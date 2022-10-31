@@ -1,8 +1,10 @@
+using UnityEngine;
+
 namespace CustomEvents
 {
-    public class GameStartEvent { }
+    public class Experience { public int ScoreExperience; public GameObject WinObj; }
 
-    public class AttackTag { }
+    public class ScoreExp { public int ScorePointExp; }
 
     public class ScorePointChanged { public int ScorePoint; }
 }

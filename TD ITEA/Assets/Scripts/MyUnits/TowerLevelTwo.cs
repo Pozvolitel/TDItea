@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerLevelTwo : MonoBehaviour, ITakeOfExperianse
+public class TowerLevelTwo : MonoBehaviour
 {
     private GameObject[] _enemy;
     [SerializeField] private GameObject _pivot;
@@ -20,12 +20,10 @@ public class TowerLevelTwo : MonoBehaviour, ITakeOfExperianse
 
     void Start()
     {
-        EventAggregator.Subscrible<AttackTag>(NewAttackTag);
     }
 
     private void OnDestroy()
     {
-        EventAggregator.UnSubscrible<AttackTag>(NewAttackTag);
         gameObject.tag = "Tower";
     }
 
@@ -47,9 +45,9 @@ public class TowerLevelTwo : MonoBehaviour, ITakeOfExperianse
             _pivot.transform.LookAt(FindClosestEnemy());
             if (!isShoot)
             {
+                gameObject.tag = "TowerActive";
                 StartCoroutine(SpawnBullet());
             }
-            EventAggregator.Post(this, new AttackTag());
         }
         else
         {
@@ -71,11 +69,6 @@ public class TowerLevelTwo : MonoBehaviour, ITakeOfExperianse
             }
         }
         return _closest;
-    }
-
-    private void NewAttackTag(object sender, AttackTag aventData)
-    {
-        gameObject.tag = "TowerActive";
     }
 
     private int ShootPoint()

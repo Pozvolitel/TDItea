@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,11 +9,15 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private Transform[] _targetPoint;
     [SerializeField] private GameObject[] _tower;
     private Transform _closest;
+    private bool isShoot;
+    private float _timeSpawn = 1f;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private Transform _shootPoint;
+    [SerializeField] private int _damage;
 
     private void Start()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        
+        _navMeshAgent = GetComponent<NavMeshAgent>();      
     }
 
     private void Update()
@@ -22,6 +27,10 @@ public class EnemyMove : MonoBehaviour
         {
             _navMeshAgent.isStopped = true;
             transform.LookAt(FindClosestEnemy());
+            if (!isShoot)
+            {
+                StartCoroutine(SpawnBullet());
+            }
         }
         else
         {
@@ -66,5 +75,17 @@ public class EnemyMove : MonoBehaviour
             _count = _targetPoint.Length;
             _navMeshAgent.isStopped = true;
         }
+    }
+    IEnumerator SpawnBullet()
+    {
+        isShoot = true;
+        yield return new WaitForSeconds(_timeSpawn);
+        if (FindClosestEnemy() != null)
+        {
+            GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
+            Bullet.GetComponent<BulletEnemy>().SetDamage(_damage);
+            Bullet.GetComponent<BulletEnemy>().ThisEnemy = this.gameObject;
+        }
+        isShoot = false;
     }
 }

@@ -6,7 +6,7 @@ public class TowerLevelOne : MonoBehaviour
     private GameObject[] _enemy;
     [SerializeField] private GameObject _pivot;
     [SerializeField] private Transform _shootPoint;
-    private float _timeSpawn = 3f;
+    private float _timeSpawn = 2f;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private bool isShoot = false;
     private Transform _closest;
@@ -58,8 +58,8 @@ public class TowerLevelOne : MonoBehaviour
         if (FindClosestEnemy() != null)
         {
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
-            Bullet.GetComponent<Bullet>().SetDamage(_damage);
-            Bullet.GetComponent<Bullet>().ThisTower = this.gameObject;
+            Bullet.GetComponent<BulletTower>().SetDamage(_damage);
+            Bullet.GetComponent<BulletTower>().ThisTower = this.gameObject;
         }
         isShoot = false;
     }

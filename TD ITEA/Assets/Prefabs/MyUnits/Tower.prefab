@@ -423,8 +423,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sliderHp: {fileID: 834809029}
   _sliderExp: {fileID: 259461146}
-  _maxValueExp: 0
-  _maxValueHp: 0
+  _maxValueExp: 900
+  _maxValueHp: 1000
 --- !u!1 &1143584823
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +705,7 @@ GameObject:
   - component: {fileID: 9140382392498718696}
   - component: {fileID: 1437185414}
   - component: {fileID: 6340354468692268157}
+  - component: {fileID: 1437185416}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Tower
@@ -789,10 +790,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.60134196
+  m_Height: 5.263134
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.018057555, y: 0.8572543, z: -0.00000009139364}
 --- !u!114 &9140382392498718696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,7 +810,7 @@ MonoBehaviour:
   _shootPoint: {fileID: 9140382392840626141}
   _bullet: {fileID: 1393824470011848033, guid: aa54f4f4ed722494bbccffeab0923eed, type: 3}
   isShoot: 0
-  _damage: 30
+  _damage: 20
 --- !u!114 &1437185414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,6 +844,22 @@ MonoBehaviour:
   _thisKill: {fileID: 0}
   _experience: 500
   _slidersCanvas: {fileID: 950256338}
+--- !u!54 &1437185416
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140382392498718677}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &9140382392840626138
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +902,6 @@ GameObject:
   - component: {fileID: 9140382393270847318}
   - component: {fileID: 9140382393270847339}
   - component: {fileID: 9140382393270847336}
-  - component: {fileID: 9140382393270847337}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -959,20 +975,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &9140382393270847337
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9140382393270847319}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9140382393698884077
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,11 +19,11 @@ public class Experians : MonoBehaviour
         EventAggregator.UnSubscrible<Experience>(ScoreExperiencePoint);
     }
 
-    private void ScoreExperiencePoint(object sender, Experience aventData)
+    private void ScoreExperiencePoint(object sender, Experience eventData)
     {
-        if (this.gameObject == aventData.WinObj)
+        if (this.gameObject == eventData.WinObj)
         {
-            _experience += aventData.ScoreExperience;
+            _experience += eventData.ScoreExperience;
             _slidersCanvas.ExpValue(_experience);
             if (_experience >= _maxExp)
             {

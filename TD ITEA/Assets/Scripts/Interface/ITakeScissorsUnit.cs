@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface InterfaceUnitHP
+public interface ITakeScissorsUnit
 {
     void TakeDamage(int damage, GameObject thisKill);
 }

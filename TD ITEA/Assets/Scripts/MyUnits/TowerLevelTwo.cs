@@ -89,12 +89,12 @@ public class TowerLevelTwo : MonoBehaviour
         isShoot = true;
         yield return new WaitForSeconds(_timeSpawn);
         GameObject Bullet = Instantiate(_bullet, _shootPoint[0].position, _shootPoint[0].rotation);
-        Bullet.GetComponent<Bullet>().SetDamage(_damage);
-        Bullet.GetComponent<Bullet>().ThisTower = this.gameObject;
+        Bullet.GetComponent<BulletTower>().SetDamage(_damage);
+        Bullet.GetComponent<BulletTower>().ThisTower = this.gameObject;
         yield return new WaitForSeconds(_timeSpawn);
         GameObject BulletTwo = Instantiate(_bullet, _shootPoint[1].position, _shootPoint[1].rotation);
-        BulletTwo.GetComponent<Bullet>().SetDamage(_damage);
-        BulletTwo.GetComponent<Bullet>().ThisTower = this.gameObject;
+        BulletTwo.GetComponent<BulletTower>().SetDamage(_damage);
+        BulletTwo.GetComponent<BulletTower>().ThisTower = this.gameObject;
         isShoot = false;
     }
 }

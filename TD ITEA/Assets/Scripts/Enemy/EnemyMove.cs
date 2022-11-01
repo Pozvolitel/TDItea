@@ -83,8 +83,8 @@ public class EnemyMove : MonoBehaviour
         if (FindClosestEnemy() != null)
         {
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
-            Bullet.GetComponent<BulletEnemy>().SetDamage(_damage);
-            Bullet.GetComponent<BulletEnemy>().ThisEnemy = this.gameObject;
+            Bullet.GetComponent<BulletTank>().SetDamage(_damage);
+            Bullet.GetComponent<BulletTank>().ThisEnemy = this.gameObject;
         }
         isShoot = false;
     }

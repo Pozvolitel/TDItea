@@ -10,18 +10,9 @@ public class GameManager : MonoBehaviour
         _scoreManager.SetScore(0);
     }
 
-    private void Update()
+    public void AddRandomScore(int score)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            TestAddRandomScore();
-        }
-    }
-    private void TestAddRandomScore()
-    {
-        var score = UnityEngine.Random.Range(10, 101);
         _scoreManager.AddScore(score);
-        //Debug.Log($"[{GetType().Name}][TestAddRandomScore] was added: {score}");
     }
 }
 

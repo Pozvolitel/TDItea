@@ -1,7 +1,7 @@
 using CustomEvents;
 using UnityEngine;
 
-public class HelthUnit : MonoBehaviour, InterfaceUnitHP
+public class HelthTowerUnit : MonoBehaviour, ITakeStoneUnit
 {
     private ExperienceManager _experienceManager = new ExperienceManager();
     [SerializeField] private int _health;

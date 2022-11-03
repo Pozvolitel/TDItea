@@ -24,7 +24,7 @@ public class TowerLevelTwo : MonoBehaviour
 
     private void OnDestroy()
     {
-        gameObject.tag = "Tower";
+        gameObject.tag = "Player";
     }
 
     public void NewExperience(int experience)
@@ -45,13 +45,13 @@ public class TowerLevelTwo : MonoBehaviour
             _pivot.transform.LookAt(FindClosestEnemy());
             if (!isShoot)
             {
-                gameObject.tag = "TowerActive";
+                gameObject.tag = "PlayerActive";
                 StartCoroutine(SpawnBullet());
             }
         }
         else
         {
-            gameObject.tag = "Tower";
+            gameObject.tag = "Player";
         }
     }
     private Transform FindClosestEnemy()

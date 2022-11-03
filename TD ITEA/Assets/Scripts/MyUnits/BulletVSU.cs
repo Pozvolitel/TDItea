@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletTower : MonoBehaviour
+public class BulletVSU : MonoBehaviour
 {
     private float _speed = 150f;
     private int _damage;
@@ -23,20 +25,20 @@ public class BulletTower : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    { 
+    {
         if (other.transform.GetComponent<ITakeScissorsEnemy>() != null)
         {
-            other.transform.GetComponent<ITakeScissorsEnemy>().TakeOnDamage(_damage * 3, ThisTower);
+            other.transform.GetComponent<ITakeScissorsEnemy>().TakeOnDamage(_damage, ThisTower);
             Destroy(gameObject);
         }
         else if (other.transform.GetComponent<ITakePaperEnemy>() != null)
         {
-            other.transform.GetComponent<ITakePaperEnemy>().TakeOnDamage(_damage / 2, ThisTower);
+            other.transform.GetComponent<ITakePaperEnemy>().TakeOnDamage(_damage * 3, ThisTower);
             Destroy(gameObject);
         }
         else if (other.transform.GetComponent<ITakeStoneEnemy>() != null)
         {
-            other.transform.GetComponent<ITakeStoneEnemy>().TakeOnDamage(_damage, ThisTower);
+            other.transform.GetComponent<ITakeStoneEnemy>().TakeOnDamage(_damage / 2, ThisTower);
             Destroy(gameObject);
         }
     }

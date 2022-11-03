@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletTank: MonoBehaviour
+public class BulletGanner : MonoBehaviour
 {
     private float _speed = 150f;
     private int _damage;
@@ -26,17 +26,17 @@ public class BulletTank: MonoBehaviour
     {
         if (other.transform.GetComponent<ITakePaperUnit>() != null)
         {
-            other.transform.GetComponent<ITakePaperUnit>().TakeDamage(_damage * 3, ThisEnemy);
+            other.transform.GetComponent<ITakePaperUnit>().TakeDamage(_damage / 2, ThisEnemy);
             Destroy(gameObject);
         }
         else if (other.transform.GetComponent<ITakeScissorsUnit>() != null)
         {
-            other.transform.GetComponent<ITakeScissorsUnit>().TakeDamage(_damage, ThisEnemy);
+            other.transform.GetComponent<ITakeScissorsUnit>().TakeDamage(_damage * 3, ThisEnemy);
             Destroy(gameObject);
         }
         else if (other.transform.GetComponent<ITakeStoneUnit>() != null)
         {
-            other.transform.GetComponent<ITakeStoneUnit>().TakeDamage(_damage / 2, ThisEnemy);
+            other.transform.GetComponent<ITakeStoneUnit>().TakeDamage(_damage, ThisEnemy);
             Destroy(gameObject);
         }
     }

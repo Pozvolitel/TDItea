@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Tower
   - EnemyTank
-  - TowerActive
   - Win
+  - PlayerActive
   layers:
   - Default
   - TransparentFX

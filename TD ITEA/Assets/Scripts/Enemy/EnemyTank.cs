@@ -1,8 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMove : MonoBehaviour
+public class EnemyTank : MonoBehaviour
 {
     private NavMeshAgent _navMeshAgent;
     [SerializeField] private int _count = 0;
@@ -13,11 +14,12 @@ public class EnemyMove : MonoBehaviour
     private float _timeSpawn = 1f;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _shootPoint;
+    [SerializeField] private Transform _pivot;
     [SerializeField] private int _damage;
 
     private void Start()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();      
+        _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -26,7 +28,8 @@ public class EnemyMove : MonoBehaviour
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 20f)
         {
             _navMeshAgent.isStopped = true;
-            transform.LookAt(FindClosestEnemy());
+            Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
+            _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
             if (!isShoot)
             {
                 StartCoroutine(SpawnBullet());
@@ -36,7 +39,7 @@ public class EnemyMove : MonoBehaviour
         {
             _navMeshAgent.isStopped = false;
             MoveToTarget();
-        }       
+        }
     }
 
     private Transform FindClosestEnemy()

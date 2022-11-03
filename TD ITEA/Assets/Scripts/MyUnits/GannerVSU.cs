@@ -1,33 +1,60 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class TowerLevelOne : MonoBehaviour
+public class GannerVSU : MonoBehaviour
 {
     private GameObject[] _enemy;
-    [SerializeField] private GameObject _pivot;
     [SerializeField] private Transform _shootPoint;
-    private float _timeSpawn = 2f;
+    private float _timeSpawn = 0.05f;
+    private float _timeShoot = 3f;
     [SerializeField] private GameObject _bullet;
     private bool isShoot = false;
     private Transform _closest;
     [SerializeField] private int _damage;
-    
+    private NavMeshAgent _navMeshAgent;
+    [SerializeField] private Transform[] _targetPoint;
+
+    private void Start()
+    {
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        
+    }
+
     private void OnDestroy()
     {
         gameObject.tag = "Player";
-    }    
+    }
 
     void Update()
     {
+        if(_targetPoint[0] != null)
+        {
+            _navMeshAgent.SetDestination(_targetPoint[0].position);
+        }
+        else if (_targetPoint[1] != null)
+        {
+            _navMeshAgent.SetDestination(_targetPoint[1].position);
+        }
+        else
+        {
+            _navMeshAgent.isStopped = true;
+        }
         _enemy = GameObject.FindGameObjectsWithTag("EnemyTank");
-        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 20f)
+
+        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 25f)
         {
             Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
-           _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
-            if (!isShoot)
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
+            _timeShoot -= Time.deltaTime;
+            if (!isShoot && _timeShoot > 0)
             {
                 gameObject.tag = "PlayerActive";
                 StartCoroutine(SpawnBullet());
+            }
+            else if (_timeShoot <= 0)
+            {
+                StartCoroutine(ReloadTimeYield());
             }
         }
         else
@@ -59,9 +86,21 @@ public class TowerLevelOne : MonoBehaviour
         if (FindClosestEnemy() != null)
         {
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
-            Bullet.GetComponent<BulletTower>().SetDamage(_damage);
-            Bullet.GetComponent<BulletTower>().ThisTower = this.gameObject;
+            Bullet.GetComponent<BulletVSU>().SetDamage(_damage);
+            Bullet.GetComponent<BulletVSU>().ThisTower = this.gameObject;
         }
         isShoot = false;
+    }
+
+    IEnumerator ReloadTimeYield()
+    {
+        var _reloadTime = 2f;
+        yield return new WaitForSeconds(_reloadTime);
+        _timeShoot = 3f;
+    }
+
+    public void TransformNextTarget()
+    {
+        _navMeshAgent.SetDestination(_targetPoint[1].position);
     }
 }

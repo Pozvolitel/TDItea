@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 849202523706271633}
   m_Layer: 0
   m_Name: TowerLVL2
-  m_TagString: Tower
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

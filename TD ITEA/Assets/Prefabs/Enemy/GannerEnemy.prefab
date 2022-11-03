@@ -66,7 +66,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3779544182989432380}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.34}
+  m_LocalPosition: {x: 0, y: 0, z: -0.02}
   m_LocalScale: {x: 0.3833327, y: 0.8339459, z: 0.3833327}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -168,7 +168,7 @@ MonoBehaviour:
   _sliderHp: {fileID: 5816406996144174488}
   _sliderExp: {fileID: 4408216073887163390}
   _maxValueExp: 500
-  _maxValueHp: 100
+  _maxValueHp: 200
 --- !u!1 &3810054001308808422
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,13 +664,13 @@ GameObject:
   - component: {fileID: 8323579041972995792}
   - component: {fileID: 8323579041972995759}
   - component: {fileID: 8323579041972995758}
-  - component: {fileID: 8323579041972995757}
   - component: {fileID: 8323579041972995756}
   - component: {fileID: 4694986529470008972}
-  - component: {fileID: 4694986529470008973}
   - component: {fileID: 1565289162}
+  - component: {fileID: 8767584755651561253}
+  - component: {fileID: 4345519509821090735}
   m_Layer: 0
-  m_Name: EnemyTank
+  m_Name: GannerEnemy
   m_TagString: EnemyTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,7 +757,45 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: -0.010207653}
---- !u!114 &8323579041972995757
+--- !u!195 &8323579041972995756
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323579041972995755}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!54 &4694986529470008972
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323579041972995755}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1565289162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -766,7 +804,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8323579041972995755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8591bbef2502824282652b90ff860c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _experience: 0
+  _slidersCanvas: {fileID: 2453161113148527276}
+  _newLevelPrefab: {fileID: 8323579041972995755}
+  _maxExp: 500
+--- !u!114 &8767584755651561253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323579041972995755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32ae2460acbbe047af5c8f6f432e3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _count: 0
@@ -795,46 +849,8 @@ MonoBehaviour:
   _tower: []
   _bullet: {fileID: 5415641873912135708, guid: 7b2577ae11fc80243bde83ba47b95896, type: 3}
   _shootPoint: {fileID: 7114244134990526071}
-  _damage: 10
---- !u!195 &8323579041972995756
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323579041972995755}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 5.29
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!54 &4694986529470008972
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323579041972995755}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &4694986529470008973
+  _damage: 5
+--- !u!114 &4345519509821090735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -843,29 +859,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8323579041972995755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf668d56cb03fa40b50289f7535413e, type: 3}
+  m_Script: {fileID: 11500000, guid: 67d0e8e0a5cea46499027959f7bf9911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
+  _health: 200
   _thisKill: {fileID: 0}
   _experience: 300
   _slidersCanvas: {fileID: 2453161113148527276}
---- !u!114 &1565289162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323579041972995755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _experience: 0
-  _slidersCanvas: {fileID: 2453161113148527276}
-  _newLevelPrefab: {fileID: 0}
-  _maxExp: 500
 --- !u!1 &8455131383511366402
 GameObject:
   m_ObjectHideFlags: 0

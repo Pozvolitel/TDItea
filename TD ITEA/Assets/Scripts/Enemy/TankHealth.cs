@@ -10,6 +10,7 @@ public class TankHealth : MonoBehaviour, ITakeScissorsEnemy
     [SerializeField] private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
     private GameManager _gameManager;
+    private int _score;
 
     private void Start()
     {
@@ -22,12 +23,16 @@ public class TankHealth : MonoBehaviour, ITakeScissorsEnemy
         _health -= damage;
         _slidersCanvas.HpValue(_health);
         _thisKill = thisKill;
+     
         if(_health <= 0)
         {
             _scoreExperienceManager.AddScore(_experience, _thisKill);
-            _gameManager.AddRandomScore(_experience);
             Destroy(gameObject);
         }
+    }
+    private void OnDestroy()
+    {
+        _gameManager.AddRandomScore(_experience);
     }
 }
 

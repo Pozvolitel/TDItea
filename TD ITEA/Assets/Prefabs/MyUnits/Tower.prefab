@@ -322,7 +322,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950256332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.34}
+  m_LocalPosition: {x: 0, y: 0, z: 0.037}
   m_LocalScale: {x: 0.3833327, y: 0.8339459, z: 0.3833327}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 1437185416}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Tower
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -791,9 +791,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.60134196
-  m_Height: 5.263134
+  m_Height: 4.5093427
   m_Direction: 1
-  m_Center: {x: 0.018057555, y: 0.8572543, z: -0.00000009139364}
+  m_Center: {x: 0.018057555, y: 1.2341517, z: -0.00000009139364}
 --- !u!114 &9140382392498718696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,8 +809,7 @@ MonoBehaviour:
   _pivot: {fileID: 9140382393778266163}
   _shootPoint: {fileID: 9140382392840626141}
   _bullet: {fileID: 1393824470011848033, guid: aa54f4f4ed722494bbccffeab0923eed, type: 3}
-  isShoot: 0
-  _damage: 20
+  _damage: 50
 --- !u!114 &1437185414
 MonoBehaviour:
   m_ObjectHideFlags: 0

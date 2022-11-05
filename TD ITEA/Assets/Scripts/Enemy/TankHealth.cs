@@ -26,13 +26,19 @@ public class TankHealth : MonoBehaviour, ITakeScissorsEnemy
      
         if(_health <= 0)
         {
+            IsDestroy(_experience);
             _scoreExperienceManager.AddScore(_experience, _thisKill);
             Destroy(gameObject);
         }
     }
-    private void OnDestroy()
+
+    private void IsDestroy(int isKill)
     {
-        _gameManager.AddRandomScore(_experience);
+        _score += _experience;
+        if (_score == _experience)
+        {
+            _gameManager.AddRandomScore(_experience);
+        }        
     }
 }
 

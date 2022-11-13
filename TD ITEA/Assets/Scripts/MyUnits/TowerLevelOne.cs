@@ -22,8 +22,9 @@ public class TowerLevelOne : MonoBehaviour
         _enemy = GameObject.FindGameObjectsWithTag("EnemyTank");
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 20f)
         {
-            Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
+            Vector3 targetRotation = FindClosestEnemy().transform.position - _pivot.transform.position;
            _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
+            
             if (!isShoot)
             {
                 gameObject.tag = "PlayerActive";
@@ -56,7 +57,7 @@ public class TowerLevelOne : MonoBehaviour
     {
         isShoot = true;
         yield return new WaitForSeconds(_timeSpawn);
-        if (FindClosestEnemy() != null)
+        if (_closest != null)
         {
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletTower>().SetDamage(_damage);

@@ -24,12 +24,18 @@ public class GannerHelth : MonoBehaviour, ITakeStoneEnemy
         _thisKill = thisKill;
         if (_health <= 0)
         {
+            IsDestroy(_experience);
             _scoreExperienceManager.AddScore(_experience, _thisKill);            
             Destroy(gameObject);
         }
     }
-    private void OnDestroy()
+
+    private void IsDestroy(int isKill)
     {
-        _gameManager.AddRandomScore(_experience);
+        _score += isKill;
+        if (_score == _experience)
+        {
+            _gameManager.AddRandomScore(_experience);
+        }
     }
 }

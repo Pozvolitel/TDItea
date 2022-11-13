@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sliderHp: {fileID: 5816406996144174488}
   _sliderExp: {fileID: 4408216073887163390}
-  _maxValueExp: 500
+  _maxValueExp: 2000
   _maxValueHp: 200
 --- !u!1 &3810054001308808422
 GameObject:
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 5209017504325488202}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: EnemyTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 4345519509821090735}
   m_Layer: 0
   m_Name: GannerEnemy
-  m_TagString: EnemyTank
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -810,7 +810,7 @@ MonoBehaviour:
   _experience: 0
   _slidersCanvas: {fileID: 2453161113148527276}
   _newLevelPrefab: {fileID: 8323579041972995755}
-  _maxExp: 500
+  _maxExp: 2000
 --- !u!114 &8767584755651561253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,9 +847,10 @@ MonoBehaviour:
   - {fileID: 9027264249035347091, guid: b03015a211b17fb459a43a601f827e83, type: 3}
   - {fileID: 1617891828597333461, guid: 4c9b30292442a9f47a9b81c75373321f, type: 3}
   _tower: []
-  _bullet: {fileID: 5415641873912135708, guid: 7b2577ae11fc80243bde83ba47b95896, type: 3}
+  _bullet: {fileID: 6830512722495085471, guid: 0d18cd3954de044489d3c18a3808e999, type: 3}
   _shootPoint: {fileID: 7114244134990526071}
   _damage: 5
+  _pivot: {fileID: 6155822031819628127}
 --- !u!114 &4345519509821090735
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,15 +10,23 @@ public class EnemyTank : MonoBehaviour
     [SerializeField] private GameObject[] _tower;
     private Transform _closest;
     private bool isShoot;
-    private float _timeSpawn = 1f;
+    [SerializeField] private float _timeSpawn;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private Transform _pivot;
     [SerializeField] private int _damage;
+    private GameManager _gameManager;
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _gameManager = FindObjectOfType<GameManager>();
+        _gameManager.AddEnemyObj(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        _gameManager.RemoveEnemyObj(this.gameObject);
     }
 
     private void Update()

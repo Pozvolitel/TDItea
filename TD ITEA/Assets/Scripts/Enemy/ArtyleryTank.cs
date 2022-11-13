@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyGanner : MonoBehaviour
+public class ArtyleryTank : MonoBehaviour
 {
     private NavMeshAgent _navMeshAgent;
     [SerializeField] private int _count = 0;
@@ -10,13 +10,15 @@ public class EnemyGanner : MonoBehaviour
     [SerializeField] private GameObject[] _tower;
     private Transform _closest;
     private bool isShoot;
-    private float _timeSpawn = 0.05f;
-    private float _timeShoot = 3f;
+    private float _timeSpawn = 5f;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _shootPoint;
-    [SerializeField] private int _damage;
-    private GameManager _gameManager;
     [SerializeField] private Transform _pivot;
+    [SerializeField] private int _damage;
+    private float _bulletVelocity;
+    private float _garavity = Physics.gravity.y;
+    [SerializeField] private float _power;
+    private GameManager _gameManager;
 
     private void Start()
     {
@@ -33,19 +35,15 @@ public class EnemyGanner : MonoBehaviour
     private void Update()
     {
         _tower = GameObject.FindGameObjectsWithTag("PlayerActive");
-        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 10f)
+        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 50f && Vector3.Distance(transform.position, FindClosestEnemy().position) > 10f)
         {
             _navMeshAgent.isStopped = true;
             Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
             _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
-            _timeShoot -= Time.deltaTime;
-            if (!isShoot && _timeShoot > 0)
+            if (!isShoot)
             {
+                Shot();
                 StartCoroutine(SpawnBullet());
-            }
-            else if(_timeShoot <= 0)
-            {
-                StartCoroutine(ReloadTimeYield());
             }
         }
         else
@@ -53,6 +51,22 @@ public class EnemyGanner : MonoBehaviour
             _navMeshAgent.isStopped = false;
             MoveToTarget();
         }
+    }
+
+    private void Shot()
+    {
+        Vector3 fromTo = FindClosestEnemy().position - _pivot.transform.position;
+        Vector3 fromToXZ = new Vector3(fromTo.x, 0f, fromTo.z);
+
+        transform.rotation = Quaternion.LookRotation(fromToXZ, Vector3.up);
+
+        float x = fromToXZ.magnitude;
+        float y = fromTo.y;
+
+        float angleinRadians = _power * Mathf.PI / 180;
+
+        float v2 = (_garavity * x * x) / (2 * (y - Mathf.Tan(angleinRadians) * x) * Mathf.Pow(Mathf.Cos(angleinRadians), 2));
+        _bulletVelocity = Mathf.Sqrt(Mathf.Abs(v2));
     }
 
     private Transform FindClosestEnemy()
@@ -98,17 +112,11 @@ public class EnemyGanner : MonoBehaviour
         yield return new WaitForSeconds(_timeSpawn);
         if (FindClosestEnemy() != null)
         {
-            GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
-            Bullet.GetComponent<BulletGanner>().SetDamage(_damage);
-            Bullet.GetComponent<BulletGanner>().ThisEnemy = this.gameObject;
+            Rigidbody Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation).GetComponent<Rigidbody>();
+            Bullet.velocity = _shootPoint.forward * _bulletVelocity;
+            Bullet.GetComponent<BulletArtEnemy>().SetDamage(_damage);
+            Bullet.GetComponent<BulletArtEnemy>().ThisEnemy = this.gameObject;
         }
         isShoot = false;
-    }
-
-    IEnumerator ReloadTimeYield()
-    {
-        var _reloadTime = 2f;
-        yield return new WaitForSeconds(_reloadTime);
-        _timeShoot = 3f;
     }
 }

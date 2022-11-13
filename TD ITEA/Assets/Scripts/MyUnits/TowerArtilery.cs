@@ -6,13 +6,12 @@ public class TowerArtilery : MonoBehaviour
     private GameObject[] _enemy;
     [SerializeField] private Transform _pivot;
     [SerializeField] private Transform _shootPoint;
-    private float _timeSpawn = 2f;
+    private float _timeSpawn = 5f;
     [SerializeField] private GameObject _bullet;
     private bool isShoot = false;
     private Transform _closest;
     [SerializeField] private int _damage;
-    [SerializeField] private float _power = 40f;
-    private Vector3 _speed;
+    [SerializeField] private float _power;
     private float _garavity = Physics.gravity.y;
     private float _bulletVelocity;
 
@@ -24,14 +23,10 @@ public class TowerArtilery : MonoBehaviour
     void Update()
     {
         _enemy = GameObject.FindGameObjectsWithTag("EnemyTank");
-        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 70f && Vector3.Distance(transform.position, FindClosestEnemy().position) > 20f)
+        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 70f)
         {
             Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
             _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
-            //_speed = (FindClosestEnemy().position - _pivot.transform.position) * _power;
-            //_pivot.transform.rotation = Quaternion.LookRotation(_speed);
-
-            //_shootPoint.eulerAngles = new Vector3(-_power, 0f, 0f);
 
             if (!isShoot)
             {
@@ -87,8 +82,8 @@ public class TowerArtilery : MonoBehaviour
         {
             Rigidbody Bullet = Instantiate(_bullet, _shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
             Bullet.velocity = _shootPoint.forward * _bulletVelocity;
-            //Bullet.GetComponent<BulletArtilert>().SetDamage(_damage);
-            //Bullet.GetComponent<BulletArtilert>().ThisTower = this.gameObject;
+            Bullet.GetComponent<BulletArtilert>().SetDamage(_damage);
+            Bullet.GetComponent<BulletArtilert>().ThisTower = this.gameObject;
         }
         isShoot = false;
     }

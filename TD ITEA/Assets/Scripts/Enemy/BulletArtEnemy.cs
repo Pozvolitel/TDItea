@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class BulletArtilert : MonoBehaviour
+public class BulletArtEnemy : MonoBehaviour
 {
     private float _radius = 6f;
     public GameObject ThisTower;
     private int _damage;
     public int Damage => _damage;
-
-    private void Start()
-    {
-        Destroy(gameObject, 5f);
-    }
+    public GameObject ThisEnemy;
 
     public void SetDamage(int damage)
     {
@@ -25,23 +21,23 @@ public class BulletArtilert : MonoBehaviour
             Rigidbody rig = overlappedCollider[i].attachedRigidbody;
             if (rig)
             {
-                if (rig.transform.GetComponent<ITakeScissorsEnemy>() != null)
+                if (rig.transform.GetComponent<ITakePaperUnit>() != null)
                 {
-                    rig.transform.GetComponent<ITakeScissorsEnemy>().TakeOnDamage(_damage / 2, ThisTower);
+                    rig.transform.GetComponent<ITakePaperUnit>().TakeDamage(_damage, ThisEnemy);
                     Destroy(gameObject);
                 }
-                else if (rig.transform.GetComponent<ITakePaperEnemy>() != null)
+                else if (rig.transform.GetComponent<ITakeScissorsUnit>() != null)
                 {
-                    rig.transform.GetComponent<ITakePaperEnemy>().TakeOnDamage(_damage, ThisTower);
+                    rig.transform.GetComponent<ITakeScissorsUnit>().TakeDamage(_damage / 2, ThisEnemy);
                     Destroy(gameObject);
                 }
-                else if (rig.transform.GetComponent<ITakeStoneEnemy>() != null)
+                else if (rig.transform.GetComponent<ITakeStoneUnit>() != null)
                 {
-                    rig.transform.GetComponent<ITakeStoneEnemy>().TakeOnDamage(_damage * 3, ThisTower);
+                    rig.transform.GetComponent<ITakeStoneUnit>().TakeDamage(_damage * 3, ThisEnemy);
                     Destroy(gameObject);
                 }
             }
-        }        
+        }
     }
 
     private void OnTriggerEnter(Collider other)

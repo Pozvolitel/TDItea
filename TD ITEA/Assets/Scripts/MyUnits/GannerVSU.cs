@@ -10,7 +10,7 @@ public class GannerVSU : MonoBehaviour
     private float _timeShoot = 3f;
     [SerializeField] private GameObject _bullet;
     private bool isShoot = false;
-    private Transform _closest;
+    [SerializeField] private Transform _closest;
     [SerializeField] private int _damage;
     private NavMeshAgent _navMeshAgent;
     [SerializeField] private Transform[] _targetPoint;
@@ -38,8 +38,23 @@ public class GannerVSU : MonoBehaviour
         }
         else
         {
-            _navMeshAgent.isStopped = true;
+            if (_closest != null)
+            {
+                if (Vector3.Distance(transform.position, _closest.position) < 70f && Vector3.Distance(transform.position, _closest.position) > 24f)
+                {
+                    _navMeshAgent.SetDestination(_closest.position);
+                }
+                else
+                {
+                    _navMeshAgent.isStopped = true;
+                }
+            }
+            else
+            {
+                _navMeshAgent.isStopped = true;
+            }
         }
+
         _enemy = GameObject.FindGameObjectsWithTag("EnemyTank");
 
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 25f)
@@ -66,14 +81,17 @@ public class GannerVSU : MonoBehaviour
     {
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
-        foreach (GameObject go in _enemy)
+        if (_enemy != null)
         {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
+            foreach (GameObject go in _enemy)
             {
-                _closest = go.transform;
-                distance = curDistance;
+                Vector3 diff = go.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    _closest = go.transform;
+                    distance = curDistance;
+                }
             }
         }
         return _closest;
@@ -83,7 +101,7 @@ public class GannerVSU : MonoBehaviour
     {
         isShoot = true;
         yield return new WaitForSeconds(_timeSpawn);
-        if (FindClosestEnemy() != null)
+        if (_closest != null)
         {
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletVSU>().SetDamage(_damage);

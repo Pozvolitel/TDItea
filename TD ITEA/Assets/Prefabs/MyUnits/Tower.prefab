@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 100797388}
   - component: {fileID: 100797390}
   - component: {fileID: 100797389}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 259461145}
   - component: {fileID: 259461146}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Exp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 834809028}
   - component: {fileID: 834809029}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 886821409}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 950256334}
   - component: {fileID: 950256337}
   - component: {fileID: 950256338}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 1143584824}
   - component: {fileID: 1143584826}
   - component: {fileID: 1143584825}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1527079139}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 2051609669}
   - component: {fileID: 2051609671}
   - component: {fileID: 2051609670}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 2100741230}
   - component: {fileID: 2100741232}
   - component: {fileID: 2100741231}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 1437185414}
   - component: {fileID: 6340354468692268157}
   - component: {fileID: 1437185416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tower
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -810,6 +810,7 @@ MonoBehaviour:
   _shootPoint: {fileID: 9140382392840626141}
   _bullet: {fileID: 1393824470011848033, guid: aa54f4f4ed722494bbccffeab0923eed, type: 3}
   _damage: 50
+  _triggerLayer: {fileID: 0}
 --- !u!114 &1437185414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,7 +856,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -868,7 +869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9140382392840626141}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,7 +902,7 @@ GameObject:
   - component: {fileID: 9140382393270847318}
   - component: {fileID: 9140382393270847339}
   - component: {fileID: 9140382393270847336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +986,7 @@ GameObject:
   - component: {fileID: 9140382393698884076}
   - component: {fileID: 9140382393698884065}
   - component: {fileID: 9140382393698884078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1067,7 +1068,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9140382393778266162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

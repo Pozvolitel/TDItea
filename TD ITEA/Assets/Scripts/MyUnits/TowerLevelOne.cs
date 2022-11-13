@@ -11,10 +11,15 @@ public class TowerLevelOne : MonoBehaviour
     private bool isShoot = false;
     private Transform _closest;
     [SerializeField] private int _damage;
+    [SerializeField] private GameObject _triggerLayer;
     
     private void OnDestroy()
     {
         gameObject.tag = "Player";
+        if (_triggerLayer != null)
+        {
+            _triggerLayer.GetComponent<PlaneTriger>().NewLayer(false);
+        }
     }    
 
     void Update()
@@ -64,5 +69,14 @@ public class TowerLevelOne : MonoBehaviour
             Bullet.GetComponent<BulletTower>().ThisTower = this.gameObject;
         }
         isShoot = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            _triggerLayer = other.transform.gameObject;
+            _triggerLayer.GetComponent<PlaneTriger>().NewLayer(true);
+        }
     }
 }

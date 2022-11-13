@@ -35,7 +35,7 @@ public class GannerHelth : MonoBehaviour, ITakeStoneEnemy
         _score += isKill;
         if (_score == _experience)
         {
-            _gameManager.AddRandomScore(_experience);
+            FindObjectOfType<GameManager>().AddRandomScore(_experience);
         }
     }
 }

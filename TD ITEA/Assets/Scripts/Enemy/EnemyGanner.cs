@@ -27,7 +27,8 @@ public class EnemyGanner : MonoBehaviour
 
     private void OnDestroy()
     {
-        _gameManager.RemoveEnemyObj(this.gameObject);
+        if(_gameManager != null)
+        FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
     }
 
     private void Update()

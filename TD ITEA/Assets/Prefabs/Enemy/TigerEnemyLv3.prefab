@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 7563857787552429721}
   - component: {fileID: 7387005003366305669}
   m_Layer: 0
-  m_Name: TigerEnemy
+  m_Name: TigerEnemyLv3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32ae2460acbbe047af5c8f6f432e3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 11400000, guid: d8368ab233304f14d94db2e48cf36b42, type: 2}
+  _item: {fileID: 11400000, guid: def80e08d63e4fc43bf5a7c05795bff0, type: 2}
   _count: 0
   _targetPoint:
   - {fileID: 6595333293775654901, guid: 3adcb534f6865414f80a9c717c191087, type: 3}
@@ -410,11 +410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 11400000, guid: d8368ab233304f14d94db2e48cf36b42, type: 2}
+  _item: {fileID: 11400000, guid: def80e08d63e4fc43bf5a7c05795bff0, type: 2}
   _slidersCanvas: {fileID: 841660193271301027}
   _maxExp: 0
-  _prefabNextLvl: {fileID: 7563857787552429719, guid: a0e5c8456cda4624ba933d8ba5677b5b,
-    type: 3}
+  _prefabNextLvl: {fileID: 7563857787552429719}
 --- !u!114 &7387005003366305669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +434,7 @@ MonoBehaviour:
   - {fileID: 3044676526678530643}
   - {fileID: 6338925050649136209}
   - {fileID: 7538884711633260597}
-  _item: {fileID: 11400000, guid: d8368ab233304f14d94db2e48cf36b42, type: 2}
+  _item: {fileID: 11400000, guid: def80e08d63e4fc43bf5a7c05795bff0, type: 2}
 --- !u!1 &7563857787605962790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1038,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 11400000, guid: d8368ab233304f14d94db2e48cf36b42,
+      objectReference: {fileID: 11400000, guid: def80e08d63e4fc43bf5a7c05795bff0,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 596384ebadd6fa64891c3f831ae0fb42, type: 3}

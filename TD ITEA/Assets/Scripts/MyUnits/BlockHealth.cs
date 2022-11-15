@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockHealth : MonoBehaviour
+public class BlockHealth : MonoBehaviour, ITakeScissorsUnit
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int _health = 1000;
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage, GameObject thisKill)
     {
-        
+        _health -= damage;
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

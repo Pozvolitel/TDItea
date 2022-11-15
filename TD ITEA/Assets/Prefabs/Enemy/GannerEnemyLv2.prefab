@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 8767584755651561253}
   - component: {fileID: 4345519509821090735}
   m_Layer: 0
-  m_Name: GannerEnemy
+  m_Name: GannerEnemyLv2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,10 +269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 11400000, guid: cc45809c4e90a2e4db97bb2e22dcbc8e, type: 2}
+  _item: {fileID: 11400000, guid: 1dc4934348f7c524c93aae8b8faf0790, type: 2}
   _slidersCanvas: {fileID: 3192623386335771913}
   _maxExp: 0
-  _prefabNextLvl: {fileID: 8323579041972995755, guid: 9adfb27ecbda53040b12aab0e1315bfe,
+  _prefabNextLvl: {fileID: 8323579041972995755, guid: 0adab7604fa35c74391532a9731c7ee6,
     type: 3}
 --- !u!114 &8767584755651561253
 MonoBehaviour:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32ae2460acbbe047af5c8f6f432e3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 11400000, guid: cc45809c4e90a2e4db97bb2e22dcbc8e, type: 2}
+  _item: {fileID: 11400000, guid: 1dc4934348f7c524c93aae8b8faf0790, type: 2}
   _count: 0
   _targetPoint:
   - {fileID: 6595333293775654901, guid: 3adcb534f6865414f80a9c717c191087, type: 3}
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slidersCanvas: {fileID: 3192623386335771913}
-  _item: {fileID: 11400000, guid: cc45809c4e90a2e4db97bb2e22dcbc8e, type: 2}
+  _item: {fileID: 11400000, guid: 1dc4934348f7c524c93aae8b8faf0790, type: 2}
 --- !u!1 &9041192155908011031
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +517,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 11400000, guid: cc45809c4e90a2e4db97bb2e22dcbc8e,
+      objectReference: {fileID: 11400000, guid: 1dc4934348f7c524c93aae8b8faf0790,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 596384ebadd6fa64891c3f831ae0fb42, type: 3}

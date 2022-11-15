@@ -16,5 +16,5 @@ MonoBehaviour:
   Health: 5000
   TimeSpawn: 0.5
   Level: 2
-  MaxExpLvl: 5000
+  MaxExp: 5000
   ExperienceBonus: 1500

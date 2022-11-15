@@ -8,9 +8,6 @@ public class Experians : MonoBehaviour
     [SerializeField] private SlidersCanvas _slidersCanvas;
     [SerializeField] private int _maxExp;
     [SerializeField] private GameObject _prefabNextLvl;
-    public int MaxExp => _maxExp;
-
-    public int Experience => _experience;
 
     void Start()
     {

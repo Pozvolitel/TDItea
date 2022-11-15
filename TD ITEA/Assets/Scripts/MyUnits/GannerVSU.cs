@@ -13,8 +13,10 @@ public class GannerVSU : MonoBehaviour
     private Transform _closest;
     private int _damage;
     private NavMeshAgent _navMeshAgent;
-    [SerializeField] private Transform[] _targetPoint;
+    private GameObject[] _targetPoint;
     [SerializeField] private Item _item;
+    private Transform _closestTarget;
+    private bool _isTarget = false;
 
     private void Start()
     {
@@ -30,34 +32,13 @@ public class GannerVSU : MonoBehaviour
 
     void Update()
     {
-        if(_targetPoint[0] != null)
-        {
-            _navMeshAgent.SetDestination(_targetPoint[0].position);
-        }
-        else if (_targetPoint[1] != null)
-        {
-            _navMeshAgent.SetDestination(_targetPoint[1].position);
-        }
-        else
-        {
-            if (_closest != null)
-            {
-                if (Vector3.Distance(transform.position, _closest.position) < 70f && Vector3.Distance(transform.position, _closest.position) > 24f)
-                {
-                    _navMeshAgent.SetDestination(_closest.position);
-                }
-                else
-                {
-                    _navMeshAgent.isStopped = true;
-                }
-            }
-            else
-            {
-                _navMeshAgent.isStopped = true;
-            }
-        }
-
         _enemy = GameObject.FindGameObjectsWithTag("EnemyTank");
+        _targetPoint = GameObject.FindGameObjectsWithTag("TargetFree");
+
+        if(FindClosestTarget() && !_isTarget)
+        {
+            _navMeshAgent.SetDestination(_closestTarget.position);
+        }
 
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 25f)
         {
@@ -79,6 +60,27 @@ public class GannerVSU : MonoBehaviour
             gameObject.tag = "Player";
         }
     }
+
+    private Transform FindClosestTarget()
+    {
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        if (_enemy != null)
+        {
+            foreach (GameObject go in _targetPoint)
+            {
+                Vector3 diff = go.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    _closestTarget = go.transform;
+                    distance = curDistance;
+                }
+            }
+        }
+        return _closestTarget;
+    }
+
     private Transform FindClosestEnemy()
     {
         float distance = Mathf.Infinity;
@@ -119,8 +121,15 @@ public class GannerVSU : MonoBehaviour
         _timeShoot = 3f;
     }
 
-    public void TransformNextTarget()
+    private void OnTriggerStay(Collider other)
     {
-        _navMeshAgent.SetDestination(_targetPoint[1].position);
+        if (other.transform.CompareTag("TargetFull"))
+        {
+            _isTarget = true;
+        }
+        else
+        {
+            _isTarget = false;
+        }
     }
 }

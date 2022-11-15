@@ -8,6 +8,8 @@ TagManager:
   - EnemyTank
   - Win
   - PlayerActive
+  - TargetFree
+  - TargetFull
   layers:
   - Default
   - TransparentFX

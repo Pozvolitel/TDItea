@@ -37,7 +37,7 @@ public class EnemyGanner : MonoBehaviour
     private void Update()
     {
         _tower = GameObject.FindGameObjectsWithTag("PlayerActive");
-        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 10f)
+        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 15f)
         {
             _navMeshAgent.isStopped = true;
             Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;

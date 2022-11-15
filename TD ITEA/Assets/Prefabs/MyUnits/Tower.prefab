@@ -423,8 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sliderHp: {fileID: 834809029}
   _sliderExp: {fileID: 259461146}
-  _maxValueExp: 900
-  _maxValueHp: 1000
+  _item: {fileID: 11400000, guid: e911a92f7609c4044885033702ab36c6, type: 2}
 --- !u!1 &1143584823
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +705,6 @@ GameObject:
   - component: {fileID: 1437185414}
   - component: {fileID: 6340354468692268157}
   - component: {fileID: 1437185416}
-  - component: {fileID: -2690732930356302251}
   m_Layer: 8
   m_Name: Tower
   m_TagString: Player
@@ -812,6 +810,7 @@ MonoBehaviour:
   _bullet: {fileID: 1393824470011848033, guid: aa54f4f4ed722494bbccffeab0923eed, type: 3}
   _damage: 50
   _triggerLayer: {fileID: 0}
+  _item: {fileID: 11400000, guid: e911a92f7609c4044885033702ab36c6, type: 2}
 --- !u!114 &1437185414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,11 +823,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _experience: 0
+  _item: {fileID: 11400000, guid: e911a92f7609c4044885033702ab36c6, type: 2}
   _slidersCanvas: {fileID: 950256338}
-  _maxExpLv1: 1000
-  _maxExpLv2: 4000
-  _maxExpLv3: 0
+  _maxExp: 0
+  _prefabNextLvl: {fileID: 9140382392498718677}
 --- !u!114 &6340354468692268157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,8 +839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c969a278aa96de24195d8323d931e676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thisKill: {fileID: 0}
   _slidersCanvas: {fileID: 950256338}
+  _item: {fileID: 11400000, guid: e911a92f7609c4044885033702ab36c6, type: 2}
 --- !u!54 &1437185416
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -859,23 +857,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-2690732930356302251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9140382392498718677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e118ae25b1ee64c9314e6e5be1b09b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 100
-  _health: 1000
-  _timeSpawn: 1
-  _level: 1
-  _experience: 300
 --- !u!1 &9140382392840626138
 GameObject:
   m_ObjectHideFlags: 0

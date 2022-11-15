@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 7699120670000436778}
   - component: {fileID: 6962499152630788058}
   - component: {fileID: 3037553325256108153}
-  - component: {fileID: 1436464176981781109}
   m_Layer: 0
   m_Name: GannerVSU
   m_TagString: Player
@@ -355,9 +354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _item: {fileID: 11400000, guid: 2ed9ad85111ca8f4a9b0648b7321319a, type: 2}
   _slidersCanvas: {fileID: 5247718849766698572}
-  _maxExpLv1: 1000
-  _maxExpLv2: 5000
+  _maxExp: 0
+  _prefabNextLvl: {fileID: 1827210740006517323}
 --- !u!114 &6962499152630788058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,8 +372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootPoint: {fileID: 604074078331341463}
   _bullet: {fileID: 1129424565997603291, guid: c62bfb5958b023940bae03ae2ac94f8b, type: 3}
-  _closest: {fileID: 0}
   _targetPoint: []
+  _item: {fileID: 11400000, guid: 2ed9ad85111ca8f4a9b0648b7321319a, type: 2}
 --- !u!114 &3037553325256108153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,23 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slidersCanvas: {fileID: 5247718849766698572}
---- !u!114 &1436464176981781109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827210740006517323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e118ae25b1ee64c9314e6e5be1b09b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 5
-  _health: 600
-  _timeSpawn: 0.1
-  _level: 1
-  _experience: 300
+  _item: {fileID: 11400000, guid: 2ed9ad85111ca8f4a9b0648b7321319a, type: 2}
 --- !u!1 &2273873915208108002
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,8 +934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sliderHp: {fileID: 4206575554204731768}
   _sliderExp: {fileID: 6338223137305665310}
-  _maxValueExp: 500
-  _maxValueHp: 200
+  _item: {fileID: 11400000, guid: 2ed9ad85111ca8f4a9b0648b7321319a, type: 2}
 --- !u!1 &6870139914592862984
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,11 +14,12 @@ public class TowerArtilery : MonoBehaviour
     [SerializeField] private float _power;
     private float _garavity = Physics.gravity.y;
     private float _bulletVelocity;
+    [SerializeField] private Item _item;
 
     private void Start()
     {
-        _damage = GetComponent<ItemObject>().Damage;
-        _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
+        _damage = _item.Damage;
+        _timeSpawn = _item.TimeSpawn;
     }
 
     private void OnDestroy()

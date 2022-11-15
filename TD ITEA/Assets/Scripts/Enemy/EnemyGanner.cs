@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class EnemyGanner : MonoBehaviour
 {
+    [SerializeField] private Item _item;
     private NavMeshAgent _navMeshAgent;
     [SerializeField] private int _count = 0;
     [SerializeField] private Transform[] _targetPoint;
@@ -23,8 +24,8 @@ public class EnemyGanner : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _gameManager = FindObjectOfType<GameManager>();
         _gameManager.AddEnemyObj(this.gameObject);
-        _damage = GetComponent<ItemObject>().Damage;
-        _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
+        _damage = _item.Damage;
+        _timeSpawn = _item.TimeSpawn;
     }
 
     private void OnDestroy()
@@ -101,8 +102,8 @@ public class EnemyGanner : MonoBehaviour
         yield return new WaitForSeconds(_timeSpawn);
         if (FindClosestEnemy() != null)
         {
-            _damage = GetComponent<ItemObject>().Damage;
-            _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
+            _damage = _item.Damage;
+            _timeSpawn = _item.TimeSpawn;
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletGanner>().SetDamage(_damage);
             Bullet.GetComponent<BulletGanner>().ThisEnemy = this.gameObject;

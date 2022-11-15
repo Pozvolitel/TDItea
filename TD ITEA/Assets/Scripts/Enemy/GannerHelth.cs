@@ -9,12 +9,12 @@ public class GannerHelth : MonoBehaviour, ITakeStoneEnemy
     private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
     private int _score;
+    [SerializeField] private Item _item;
 
     private void Start()
     {
-        _experience = GetComponent<ItemObject>().Experience;
-        _health = GetComponent<ItemObject>().Health;
-        _slidersCanvas.HpValue(_health);
+        _experience = _item.ExperienceBonus;
+        _health = _item.Health;
     }
 
     public void TakeOnDamage(int damage, GameObject thisKill)

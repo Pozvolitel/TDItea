@@ -4,17 +4,18 @@ using UnityEngine;
 public class Experians : MonoBehaviour
 {
     private int _experience;
+    [SerializeField] private Item _item;
     [SerializeField] private SlidersCanvas _slidersCanvas;
-    [SerializeField] private int _maxExpLv1;
-    [SerializeField] private int _maxExpLv2;
-    public int MaxExpLv1 => _maxExpLv1;
-    public int MaxExpLv2 => _maxExpLv2;
+    [SerializeField] private int _maxExp;
+    [SerializeField] private GameObject _prefabNextLvl;
+    public int MaxExp => _maxExp;
 
     public int Experience => _experience;
 
     void Start()
     {
         EventAggregator.Subscrible<Experience>(ScoreExperiencePoint);
+        _maxExp = _item.MaxExp;
     }
 
     private void OnDestroy()
@@ -28,18 +29,10 @@ public class Experians : MonoBehaviour
         {
             _experience += eventData.ScoreExperience;
             _slidersCanvas.ExpValue(_experience);
-            if (_experience >= _maxExpLv1 && GetComponent<ItemObject>().Level == 1)
-            {                
-                GetComponent<ItemObject>().LevelUp(2);
-                _experience = 0;
-            }
-            else if (_experience >= _maxExpLv2 && GetComponent<ItemObject>().Level == 2)
+            if (_experience >= _maxExp && _item.Level != 3)
             {
-                GetComponent<ItemObject>().LevelUp(3);                
-            }
-            else if (GetComponent<ItemObject>().Level == 3)
-            {
-                
+                Instantiate(_prefabNextLvl, transform.position, transform.rotation);
+                Destroy(gameObject);
             }
         }
     }

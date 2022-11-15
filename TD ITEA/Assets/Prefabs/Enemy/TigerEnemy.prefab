@@ -515,7 +515,6 @@ GameObject:
   - component: {fileID: 7563857787552429716}
   - component: {fileID: 7563857787552429717}
   - component: {fileID: 7563857787552429718}
-  - component: {fileID: 776537443019299274}
   - component: {fileID: 7563857787552429726}
   - component: {fileID: 7563857787552429727}
   - component: {fileID: 7563857787552429721}
@@ -626,6 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32ae2460acbbe047af5c8f6f432e3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _item: {fileID: 11400000, guid: d8368ab233304f14d94db2e48cf36b42, type: 2}
   _count: 0
   _targetPoint:
   - {fileID: 6595333293775654901, guid: 3adcb534f6865414f80a9c717c191087, type: 3}
@@ -653,23 +653,6 @@ MonoBehaviour:
   _bullet: {fileID: 6830512722495085471, guid: 0d18cd3954de044489d3c18a3808e999, type: 3}
   _shootPoint: {fileID: 7563857787346891854}
   _pivot: {fileID: 7563857787078007186}
---- !u!114 &776537443019299274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7563857787552429719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e118ae25b1ee64c9314e6e5be1b09b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 5
-  _health: 1000
-  _timeSpawn: 0.1
-  _level: 1
-  _experience: 500
 --- !u!54 &7563857787552429726
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -720,9 +703,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _item: {fileID: 11400000, guid: d8368ab233304f14d94db2e48cf36b42, type: 2}
   _slidersCanvas: {fileID: 7563857788085260586}
-  _maxExpLv1: 1000
-  _maxExpLv2: 5000
+  _maxExp: 0
+  _prefabNextLvl: {fileID: 7563857787552429719}
 --- !u!114 &7387005003366305669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,9 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916e112c0092c374888520033b494ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 1000
   _thisKill: {fileID: 0}
-  _experience: 500
   _slidersCanvas: {fileID: 7563857788085260586}
   _gunnerPrefab: {fileID: 8323579041972995755, guid: f9f36d313c7e57b418574287c9dc65b7,
     type: 3}
@@ -745,6 +727,7 @@ MonoBehaviour:
   - {fileID: 3044676526678530643}
   - {fileID: 6338925050649136209}
   - {fileID: 7538884711633260597}
+  _item: {fileID: 11400000, guid: d8368ab233304f14d94db2e48cf36b42, type: 2}
 --- !u!1 &7563857787605962790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,8 +1184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sliderHp: {fileID: 7563857787297593980}
   _sliderExp: {fileID: 7563857787213561448}
-  _maxValueExp: 2000
-  _maxValueHp: 1000
+  _item: {fileID: 11400000, guid: d8368ab233304f14d94db2e48cf36b42, type: 2}
 --- !u!1 &7563857788099056873
 GameObject:
   m_ObjectHideFlags: 0

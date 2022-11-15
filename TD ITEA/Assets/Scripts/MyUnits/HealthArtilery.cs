@@ -7,12 +7,12 @@ public class HealthArtilery : MonoBehaviour, ITakePaperUnit
     private GameObject _thisKill;
     private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
+    [SerializeField] private Item _item;
 
     private void Start()
     {
-        _experience = GetComponent<ItemObject>().Experience;
-        _health = GetComponent<ItemObject>().Health;
-        _slidersCanvas.HpValue(_health);
+        _experience = _item.ExperienceBonus;
+        _health = _item.Health;
     }
 
     public void TakeDamage(int damage, GameObject thisKill)

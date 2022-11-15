@@ -12,11 +12,12 @@ public class Tower : MonoBehaviour
     private Transform _closest;
     [SerializeField] private int _damage;
     [SerializeField] private GameObject _triggerLayer;
+    [SerializeField] private Item _item;
 
     private void Start()
     {
-        _damage = GetComponent<ItemObject>().Damage;
-        _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
+        _damage = _item.Damage;
+        _timeSpawn = _item.TimeSpawn;
     }
 
     private void OnDestroy()
@@ -70,8 +71,6 @@ public class Tower : MonoBehaviour
         yield return new WaitForSeconds(_timeSpawn);
         if (_closest != null)
         {
-            _damage = GetComponent<ItemObject>().Damage;
-            _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletTower>().SetDamage(_damage);
             Bullet.GetComponent<BulletTower>().ThisTower = this.gameObject;

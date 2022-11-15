@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TigerHelth : MonoBehaviour, ITakeStoneEnemy, ITakeHealth
+public class TigerHelth : MonoBehaviour, ITakeStoneEnemy
 {
     private ScoreExperienceManager _scoreExperienceManager = new ScoreExperienceManager();
 
@@ -10,23 +10,17 @@ public class TigerHelth : MonoBehaviour, ITakeStoneEnemy, ITakeHealth
     [SerializeField] private SlidersCanvas _slidersCanvas;
     private GameManager _gameManager;
     private int _score;
-    private TigerDestroy _tigerDestroy;
     [SerializeField] private GameObject _gunnerPrefab;
     private int _lengthGunner = 3;
     [SerializeField] private Transform[] _spawnPoint;
+    [SerializeField] private Item _item;
 
+    
     private void Start()
     {
-        _experience = GetComponent<ItemObject>().Experience;
-        _health = GetComponent<ItemObject>().Health;
+        _experience = _item.ExperienceBonus;
+        _health = _item.Health;
         _gameManager = FindObjectOfType<GameManager>();
-        _slidersCanvas.HpValue(_health);
-        _tigerDestroy = GetComponent<TigerDestroy>();
-    }
-
-    public void NewHealth(int health)
-    {
-        _health = health;
     }
 
     public void TakeOnDamage(int damage, GameObject thisKill)

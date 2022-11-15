@@ -5,11 +5,13 @@ public class SlidersCanvas : MonoBehaviour
 {
     [SerializeField] private Slider _sliderHp;
     [SerializeField] private Slider _sliderExp;
-        
+    [SerializeField] private Item _item;
+
     private void Start()
     {
-        _sliderExp.maxValue = GetComponentInParent<Experians>().MaxExpLv1;
-        _sliderHp.maxValue = GetComponentInParent<ItemObject>().Health;
+        _sliderExp.maxValue = _item.MaxExp;
+        _sliderHp.maxValue = _item.Health;
+        _sliderHp.value = _item.Health;
     }
 
     public void HpValue(int hpValue)

@@ -167,8 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sliderHp: {fileID: 5816406996144174488}
   _sliderExp: {fileID: 4408216073887163390}
-  _maxValueExp: 2000
-  _maxValueHp: 200
+  _item: {fileID: 11400000, guid: cc45809c4e90a2e4db97bb2e22dcbc8e, type: 2}
 --- !u!1 &3810054001308808422
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +667,6 @@ GameObject:
   - component: {fileID: 4694986529470008972}
   - component: {fileID: 1565289162}
   - component: {fileID: 8767584755651561253}
-  - component: {fileID: 7256935606476365142}
   - component: {fileID: 4345519509821090735}
   m_Layer: 0
   m_Name: GannerEnemy
@@ -808,9 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _item: {fileID: 11400000, guid: cc45809c4e90a2e4db97bb2e22dcbc8e, type: 2}
   _slidersCanvas: {fileID: 2453161113148527276}
-  _maxExpLv1: 1000
-  _maxExpLv2: 5000
+  _maxExp: 0
+  _prefabNextLvl: {fileID: 8323579041972995755}
 --- !u!114 &8767584755651561253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32ae2460acbbe047af5c8f6f432e3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _item: {fileID: 11400000, guid: cc45809c4e90a2e4db97bb2e22dcbc8e, type: 2}
   _count: 0
   _targetPoint:
   - {fileID: 6595333293775654901, guid: 3adcb534f6865414f80a9c717c191087, type: 3}
@@ -850,23 +850,6 @@ MonoBehaviour:
   _bullet: {fileID: 6830512722495085471, guid: 0d18cd3954de044489d3c18a3808e999, type: 3}
   _shootPoint: {fileID: 7114244134990526071}
   _pivot: {fileID: 6155822031819628127}
---- !u!114 &7256935606476365142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323579041972995755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e118ae25b1ee64c9314e6e5be1b09b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 5
-  _health: 300
-  _timeSpawn: 0.1
-  _level: 1
-  _experience: 300
 --- !u!114 &4345519509821090735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,10 +862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d0e8e0a5cea46499027959f7bf9911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 200
-  _thisKill: {fileID: 0}
-  _experience: 300
   _slidersCanvas: {fileID: 2453161113148527276}
+  _item: {fileID: 11400000, guid: cc45809c4e90a2e4db97bb2e22dcbc8e, type: 2}
 --- !u!1 &8455131383511366402
 GameObject:
   m_ObjectHideFlags: 0

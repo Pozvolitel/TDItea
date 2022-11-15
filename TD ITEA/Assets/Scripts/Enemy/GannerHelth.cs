@@ -4,16 +4,16 @@ public class GannerHelth : MonoBehaviour, ITakeStoneEnemy
 {
     private ScoreExperienceManager _scoreExperienceManager = new ScoreExperienceManager();
 
-    [SerializeField] private int _health;
-    [SerializeField] private GameObject _thisKill;
-    [SerializeField] private int _experience;
+    private int _health;
+    private GameObject _thisKill;
+    private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
-    private GameManager _gameManager;
     private int _score;
 
     private void Start()
     {
-        _gameManager = FindObjectOfType<GameManager>();
+        _experience = GetComponent<ItemObject>().Experience;
+        _health = GetComponent<ItemObject>().Health;
         _slidersCanvas.HpValue(_health);
     }
 

@@ -668,6 +668,7 @@ GameObject:
   - component: {fileID: 4694986529470008972}
   - component: {fileID: 1565289162}
   - component: {fileID: 8767584755651561253}
+  - component: {fileID: 7256935606476365142}
   - component: {fileID: 4345519509821090735}
   m_Layer: 0
   m_Name: GannerEnemy
@@ -807,10 +808,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _experience: 0
   _slidersCanvas: {fileID: 2453161113148527276}
-  _newLevelPrefab: {fileID: 8323579041972995755}
-  _maxExp: 2000
+  _maxExpLv1: 1000
+  _maxExpLv2: 5000
 --- !u!114 &8767584755651561253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,8 +849,24 @@ MonoBehaviour:
   _tower: []
   _bullet: {fileID: 6830512722495085471, guid: 0d18cd3954de044489d3c18a3808e999, type: 3}
   _shootPoint: {fileID: 7114244134990526071}
-  _damage: 5
   _pivot: {fileID: 6155822031819628127}
+--- !u!114 &7256935606476365142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323579041972995755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e118ae25b1ee64c9314e6e5be1b09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 5
+  _health: 300
+  _timeSpawn: 0.1
+  _level: 1
+  _experience: 300
 --- !u!114 &4345519509821090735
 MonoBehaviour:
   m_ObjectHideFlags: 0

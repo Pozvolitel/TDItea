@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealthGanner : MonoBehaviour, ITakeScissorsUnit, ITakeHealth
+public class HealthArtilery : MonoBehaviour, ITakePaperUnit
 {
     private ExperienceManager _experienceManager = new ExperienceManager();
     private int _health;
@@ -15,17 +15,11 @@ public class HealthGanner : MonoBehaviour, ITakeScissorsUnit, ITakeHealth
         _slidersCanvas.HpValue(_health);
     }
 
-    public void NewHealth(int health)
-    {
-        _health = health;
-    }
-
     public void TakeDamage(int damage, GameObject thisKill)
     {
         _health -= damage;
         _slidersCanvas.HpValue(_health);
         _thisKill = thisKill;
-
         if (_health <= 0)
         {
             _experienceManager.AddScore(_experience, _thisKill);

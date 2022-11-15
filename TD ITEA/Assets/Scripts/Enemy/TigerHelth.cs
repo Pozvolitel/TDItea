@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class TigerHelth : MonoBehaviour, ITakeStoneEnemy
+public class TigerHelth : MonoBehaviour, ITakeStoneEnemy, ITakeHealth
 {
     private ScoreExperienceManager _scoreExperienceManager = new ScoreExperienceManager();
 
-    [SerializeField] private int _health;
+    private int _health;
     [SerializeField] private GameObject _thisKill;
-    [SerializeField] private int _experience;
+    private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
     private GameManager _gameManager;
     private int _score;
@@ -17,9 +17,16 @@ public class TigerHelth : MonoBehaviour, ITakeStoneEnemy
 
     private void Start()
     {
+        _experience = GetComponent<ItemObject>().Experience;
+        _health = GetComponent<ItemObject>().Health;
         _gameManager = FindObjectOfType<GameManager>();
         _slidersCanvas.HpValue(_health);
         _tigerDestroy = GetComponent<TigerDestroy>();
+    }
+
+    public void NewHealth(int health)
+    {
+        _health = health;
     }
 
     public void TakeOnDamage(int damage, GameObject thisKill)
@@ -27,6 +34,7 @@ public class TigerHelth : MonoBehaviour, ITakeStoneEnemy
         _health -= damage;
         _slidersCanvas.HpValue(_health);
         _thisKill = thisKill;
+
         if (_health <= 0)
         {
             IsDestroy(_experience);

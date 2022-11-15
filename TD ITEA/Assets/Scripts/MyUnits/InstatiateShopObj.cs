@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InstatiateShopObj : MonoBehaviour
 {
     private DragShopObject _dragShopObject;
     [SerializeField] private GameObject _tower;
+    private bool _isbuild = false;
 
     private void Start()
     {
@@ -13,9 +12,17 @@ public class InstatiateShopObj : MonoBehaviour
         _dragShopObject.PrefabPosition(this.gameObject);
     }
 
+    public void IsBuild(bool isBuild)
+    {
+        _isbuild = isBuild;
+    }
+
     public void IsBilding()
     {
-        Instantiate(_tower, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        if (_isbuild)
+        {
+            Instantiate(_tower, transform.position, Quaternion.identity);
+        }
+            Destroy(gameObject);
     }
 }

@@ -345,6 +345,9 @@ GameObject:
   - component: {fileID: 55799064388770442}
   - component: {fileID: 55799064388770443}
   - component: {fileID: 55799064388770440}
+  - component: {fileID: -3444547576599604331}
+  - component: {fileID: 7516611378683042098}
+  - component: {fileID: -4425688029115919154}
   m_Layer: 0
   m_Name: TowerArtilery
   m_TagString: Player
@@ -434,7 +437,6 @@ MonoBehaviour:
   _pivot: {fileID: 55799065967978465}
   _shootPoint: {fileID: 55799064227419851}
   _bullet: {fileID: 5715452004041672437, guid: 470355e1c74ce6948a3b4150f7eaa21a, type: 3}
-  _damage: 100
   _power: 130
 --- !u!136 &55799064388770440
 CapsuleCollider:
@@ -450,6 +452,51 @@ CapsuleCollider:
   m_Height: 6.6828046
   m_Direction: 1
   m_Center: {x: 0.000000045237282, y: 1.5575354, z: -0.000000090474565}
+--- !u!114 &-3444547576599604331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55799064388770441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e118ae25b1ee64c9314e6e5be1b09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 100
+  _health: 600
+  _timeSpawn: 5
+  _level: 1
+  _experience: 500
+--- !u!114 &7516611378683042098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55799064388770441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0244a59957b8dc04eb74087f74028999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slidersCanvas: {fileID: 0}
+  _maxExpLv1: 1000
+  _maxExpLv2: 5000
+--- !u!114 &-4425688029115919154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55799064388770441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde7615e224f2541aaae9f1a02a4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slidersCanvas: {fileID: 55799065319354423}
 --- !u!1 &55799064544728132
 GameObject:
   m_ObjectHideFlags: 0

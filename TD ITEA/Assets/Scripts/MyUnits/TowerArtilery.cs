@@ -6,14 +6,20 @@ public class TowerArtilery : MonoBehaviour
     private GameObject[] _enemy;
     [SerializeField] private Transform _pivot;
     [SerializeField] private Transform _shootPoint;
-    private float _timeSpawn = 5f;
+    private float _timeSpawn;
     [SerializeField] private GameObject _bullet;
     private bool isShoot = false;
     private Transform _closest;
-    [SerializeField] private int _damage;
+    private int _damage;
     [SerializeField] private float _power;
     private float _garavity = Physics.gravity.y;
     private float _bulletVelocity;
+
+    private void Start()
+    {
+        _damage = GetComponent<ItemObject>().Damage;
+        _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
+    }
 
     private void OnDestroy()
     {

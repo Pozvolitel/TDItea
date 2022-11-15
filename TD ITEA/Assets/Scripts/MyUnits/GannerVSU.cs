@@ -6,19 +6,20 @@ public class GannerVSU : MonoBehaviour
 {
     private GameObject[] _enemy;
     [SerializeField] private Transform _shootPoint;
-    private float _timeSpawn = 0.05f;
+    private float _timeSpawn;
     private float _timeShoot = 3f;
     [SerializeField] private GameObject _bullet;
     private bool isShoot = false;
-    [SerializeField] private Transform _closest;
-    [SerializeField] private int _damage;
+    private Transform _closest;
+    private int _damage;
     private NavMeshAgent _navMeshAgent;
     [SerializeField] private Transform[] _targetPoint;
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        
+        _damage = GetComponent<ItemObject>().Damage;
+        _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
     }
 
     private void OnDestroy()
@@ -103,6 +104,8 @@ public class GannerVSU : MonoBehaviour
         yield return new WaitForSeconds(_timeSpawn);
         if (_closest != null)
         {
+            _damage = GetComponent<ItemObject>().Damage;
+            _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletVSU>().SetDamage(_damage);
             Bullet.GetComponent<BulletVSU>().ThisTower = this.gameObject;

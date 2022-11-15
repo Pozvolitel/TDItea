@@ -1,18 +1,24 @@
 using System.Collections;
 using UnityEngine;
 
-public class TowerLevelOne : MonoBehaviour
+public class Tower : MonoBehaviour
 {
     private GameObject[] _enemy;
     [SerializeField] private GameObject _pivot;
     [SerializeField] private Transform _shootPoint;
-    private float _timeSpawn = 2f;
+    private float _timeSpawn;
     [SerializeField] private GameObject _bullet;
     private bool isShoot = false;
     private Transform _closest;
     [SerializeField] private int _damage;
     [SerializeField] private GameObject _triggerLayer;
-    
+
+    private void Start()
+    {
+        _damage = GetComponent<ItemObject>().Damage;
+        _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
+    }
+
     private void OnDestroy()
     {
         gameObject.tag = "Player";
@@ -64,6 +70,8 @@ public class TowerLevelOne : MonoBehaviour
         yield return new WaitForSeconds(_timeSpawn);
         if (_closest != null)
         {
+            _damage = GetComponent<ItemObject>().Damage;
+            _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletTower>().SetDamage(_damage);
             Bullet.GetComponent<BulletTower>().ThisTower = this.gameObject;

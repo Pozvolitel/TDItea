@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class Experians : MonoBehaviour
 {
-    [SerializeField] private int _experience;
+    private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
-    [SerializeField] private GameObject _newLevelPrefab;
-    [SerializeField] private int _maxExp;
+    [SerializeField] private int _maxExpLv1;
+    [SerializeField] private int _maxExpLv2;
+    public int MaxExpLv1 => _maxExpLv1;
+    public int MaxExpLv2 => _maxExpLv2;
+
     public int Experience => _experience;
 
     void Start()
@@ -25,10 +28,18 @@ public class Experians : MonoBehaviour
         {
             _experience += eventData.ScoreExperience;
             _slidersCanvas.ExpValue(_experience);
-            if (_experience >= _maxExp)
+            if (_experience >= _maxExpLv1 && GetComponent<ItemObject>().Level == 1)
+            {                
+                GetComponent<ItemObject>().LevelUp(2);
+                _experience = 0;
+            }
+            else if (_experience >= _maxExpLv2 && GetComponent<ItemObject>().Level == 2)
             {
-                Instantiate(_newLevelPrefab, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                GetComponent<ItemObject>().LevelUp(3);                
+            }
+            else if (GetComponent<ItemObject>().Level == 3)
+            {
+                
             }
         }
     }

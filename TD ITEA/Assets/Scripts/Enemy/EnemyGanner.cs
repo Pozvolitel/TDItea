@@ -10,11 +10,11 @@ public class EnemyGanner : MonoBehaviour
     [SerializeField] private GameObject[] _tower;
     private Transform _closest;
     private bool isShoot;
-    private float _timeSpawn = 0.05f;
+    private float _timeSpawn;
     private float _timeShoot = 3f;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _shootPoint;
-    [SerializeField] private int _damage;
+    private int _damage;
     private GameManager _gameManager;
     [SerializeField] private Transform _pivot;
 
@@ -23,6 +23,8 @@ public class EnemyGanner : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _gameManager = FindObjectOfType<GameManager>();
         _gameManager.AddEnemyObj(this.gameObject);
+        _damage = GetComponent<ItemObject>().Damage;
+        _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
     }
 
     private void OnDestroy()
@@ -99,6 +101,8 @@ public class EnemyGanner : MonoBehaviour
         yield return new WaitForSeconds(_timeSpawn);
         if (FindClosestEnemy() != null)
         {
+            _damage = GetComponent<ItemObject>().Damage;
+            _timeSpawn = GetComponent<ItemObject>().TimeSpawn;
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletGanner>().SetDamage(_damage);
             Bullet.GetComponent<BulletGanner>().ThisEnemy = this.gameObject;

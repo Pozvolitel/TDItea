@@ -1,22 +1,30 @@
 using CustomEvents;
 using UnityEngine;
 
-public class HelthTowerUnit : MonoBehaviour, ITakeStoneUnit
+public class HelthTowerUnit : MonoBehaviour, ITakeStoneUnit, ITakeHealth
 {
     private ExperienceManager _experienceManager = new ExperienceManager();
-    [SerializeField] private int _health;
-    [SerializeField] private GameObject _thisKill;
-    [SerializeField] private int _experience;
+    private int _health;
+    private GameObject _thisKill;
+    private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
 
     private void Start()
     {
+        _experience = GetComponent<ItemObject>().Experience;
+        _health = GetComponent<ItemObject>().Health;
         _slidersCanvas.HpValue(_health);
+    }
+
+    public void NewHealth(int health)
+    {
+        _health = health;
     }
 
     public void TakeDamage(int damage, GameObject thisKill)
     {
         _health -= damage;
+
         _slidersCanvas.HpValue(_health);
         _thisKill = thisKill;
         if (_health <= 0)

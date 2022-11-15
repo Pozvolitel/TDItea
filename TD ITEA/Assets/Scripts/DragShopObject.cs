@@ -43,6 +43,11 @@ public class DragShopObject : MonoBehaviour
             if (Physics.Raycast(myRay, out hitInfo, 100, layer))
             {
                 BildZone(hitInfo);
+                _prefabPosition.GetComponent<InstatiateShopObj>().IsBuild(true);
+            }
+            else
+            {
+                _prefabPosition.GetComponent<InstatiateShopObj>().IsBuild(false);
             }
         }
     }

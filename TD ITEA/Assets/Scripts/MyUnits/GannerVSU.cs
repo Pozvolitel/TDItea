@@ -37,13 +37,19 @@ public class GannerVSU : MonoBehaviour
 
         if(FindClosestTarget() && !_isTarget)
         {
+            if(Vector3.Distance(transform.position, FindClosestTarget().position) > 1f)
             _navMeshAgent.SetDestination(_closestTarget.position);
+        }
+        else
+        {
+            _navMeshAgent.isStopped = true;
         }
 
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 25f)
         {
-            Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
+            //Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
+            transform.LookAt(_closest);
             _timeShoot -= Time.deltaTime;
             if (!isShoot && _timeShoot > 0)
             {

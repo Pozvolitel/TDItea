@@ -102,8 +102,6 @@ public class EnemyGanner : MonoBehaviour
         yield return new WaitForSeconds(_timeSpawn);
         if (FindClosestEnemy() != null)
         {
-            _damage = _item.Damage;
-            _timeSpawn = _item.TimeSpawn;
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletGanner>().SetDamage(_damage);
             Bullet.GetComponent<BulletGanner>().ThisEnemy = this.gameObject;

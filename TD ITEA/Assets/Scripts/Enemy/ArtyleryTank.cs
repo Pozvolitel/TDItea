@@ -19,12 +19,15 @@ public class ArtyleryTank : MonoBehaviour
     private float _garavity = Physics.gravity.y;
     [SerializeField] private float _power;
     private GameManager _gameManager;
+    [SerializeField] private Item _item;
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _gameManager = FindObjectOfType<GameManager>();
         _gameManager.AddEnemyObj(this.gameObject);
+        _damage = _item.Damage;
+        _timeSpawn = _item.TimeSpawn;
     }
 
     private void OnDestroy()

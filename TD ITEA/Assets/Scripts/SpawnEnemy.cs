@@ -9,7 +9,7 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] private GameObject[] _prefabsPack;
     [SerializeField] private Transform _spawnPoint;
     private bool isShoot;
-    private int[] _numberPrefab = new int[] { 0, 0, 1, 1 };
+    private int[] _numberPrefab = new int[] { 0, 0, 0, 0, 0 };
 
     private void Update()
     {

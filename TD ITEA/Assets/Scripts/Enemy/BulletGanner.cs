@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletGanner : MonoBehaviour
 {
-    private float _speed = 150f;
+    private float _speed = 70f;
     private int _damage;
     public int Damage => _damage;
     public GameObject ThisEnemy;
@@ -39,5 +39,6 @@ public class BulletGanner : MonoBehaviour
             other.transform.GetComponent<ITakeStoneUnit>().TakeDamage(_damage, ThisEnemy);
             Destroy(gameObject);
         }
-    }
+        Destroy(gameObject);
+    }    
 }

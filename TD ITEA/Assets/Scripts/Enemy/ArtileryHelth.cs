@@ -8,13 +8,13 @@ public class ArtileryHelth : MonoBehaviour, ITakePaperEnemy
     [SerializeField] private GameObject _thisKill;
     [SerializeField] private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
-    private GameManager _gameManager;
     private int _score;
+    [SerializeField] private Item _item;
 
     private void Start()
     {
-        _gameManager = FindObjectOfType<GameManager>();
-        _slidersCanvas.HpValue(_health);
+        _experience = _item.ExperienceBonus;
+        _health = _item.Health;
     }
 
     public void TakeOnDamage(int damage, GameObject thisKill)
@@ -36,7 +36,7 @@ public class ArtileryHelth : MonoBehaviour, ITakePaperEnemy
         _score += isKill;
         if (_score == _experience)
         {
-            _gameManager.AddRandomScore(_experience);
+            FindObjectOfType<GameManager>().AddRandomScore(_experience);
         }
     }
 }

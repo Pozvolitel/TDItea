@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletVSU : MonoBehaviour
 {
-    private float _speed = 150f;
+    private float _speed = 70f;
     private int _damage;
     public int Damage => _damage;
     public GameObject ThisTower;

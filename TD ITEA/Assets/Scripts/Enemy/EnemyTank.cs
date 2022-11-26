@@ -16,12 +16,15 @@ public class EnemyTank : MonoBehaviour
     [SerializeField] private Transform _pivot;
     [SerializeField] private int _damage;
     private GameManager _gameManager;
+    [SerializeField] private Item _item;
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _gameManager = FindObjectOfType<GameManager>();
         _gameManager.AddEnemyObj(this.gameObject);
+        _damage = _item.Damage;
+        _timeSpawn = _item.TimeSpawn;
     }
 
     private void OnDestroy()

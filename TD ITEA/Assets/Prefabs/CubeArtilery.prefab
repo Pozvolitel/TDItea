@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1750723819890599715}
   - component: {fileID: -8140006112185970679}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CubeArtilery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,8 @@ MeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 55799064388770484, guid: 2c20a90effc5bba429afa585d952e134,
+    type: 3}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1
@@ -110,4 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97536e469ad62da40aaeaebb1f1feb22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tower: {fileID: 9140382392498718677, guid: edc192f46242a1d4da07f67173ba6551, type: 3}
+  _tower: {fileID: 55799064388770441, guid: 2c20a90effc5bba429afa585d952e134, type: 3}

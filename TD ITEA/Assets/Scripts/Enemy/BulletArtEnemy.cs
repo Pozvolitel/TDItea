@@ -3,10 +3,14 @@ using UnityEngine;
 public class BulletArtEnemy : MonoBehaviour
 {
     private float _radius = 6f;
-    public GameObject ThisTower;
     private int _damage;
     public int Damage => _damage;
     public GameObject ThisEnemy;
+
+    private void Start()
+    {
+        Destroy(gameObject, 7f);
+    }
 
     public void SetDamage(int damage)
     {

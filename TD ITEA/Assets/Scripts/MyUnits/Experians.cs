@@ -8,6 +8,7 @@ public class Experians : MonoBehaviour
     [SerializeField] private SlidersCanvas _slidersCanvas;
     private int _maxExp;
     [SerializeField] private GameObject _prefabNextLvl;
+    private bool _destroy = true;
 
     void Start()
     {
@@ -26,9 +27,10 @@ public class Experians : MonoBehaviour
         {
             _experience += eventData.ScoreExperience;
             _slidersCanvas.ExpValue(_experience);
-            if (_experience >= _maxExp && _item.Level != 3)
+            if (_experience >= _maxExp && _item.Level != 3 && _destroy)
             {
                 Instantiate(_prefabNextLvl, transform.position, transform.rotation);
+                _destroy = false;
                 Destroy(gameObject);
             }
         }

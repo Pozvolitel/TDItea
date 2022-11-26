@@ -112,3 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tower: {fileID: 55799064388770441, guid: 2c20a90effc5bba429afa585d952e134, type: 3}
+  _cointTower: 3000

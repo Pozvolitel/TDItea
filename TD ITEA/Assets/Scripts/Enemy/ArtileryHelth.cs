@@ -25,8 +25,7 @@ public class ArtileryHelth : MonoBehaviour, ITakePaperEnemy
 
         if (_health <= 0)
         {
-            IsDestroy(_experience);
-            _scoreExperienceManager.AddScore(_experience, _thisKill);
+            IsDestroy(_experience);            
             Destroy(gameObject);
         }
     }
@@ -36,6 +35,7 @@ public class ArtileryHelth : MonoBehaviour, ITakePaperEnemy
         _score += isKill;
         if (_score == _experience)
         {
+            _scoreExperienceManager.AddScore(_experience, _thisKill);
             FindObjectOfType<GameManager>().AddRandomScore(_experience);
         }
     }

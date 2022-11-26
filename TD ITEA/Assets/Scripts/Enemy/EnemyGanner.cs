@@ -30,8 +30,8 @@ public class EnemyGanner : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(_gameManager != null)
-        FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
+        if (FindObjectOfType<GameManager>() != null)
+            FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
     }
 
     private void Update()
@@ -89,6 +89,8 @@ public class EnemyGanner : MonoBehaviour
         if (_count < _targetPoint.Length)
         {
             _navMeshAgent.SetDestination(_targetPoint[_count].position);
+            Vector3 targetRotation = _targetPoint[_count].position - transform.position;
+            _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
         }
         else
         {

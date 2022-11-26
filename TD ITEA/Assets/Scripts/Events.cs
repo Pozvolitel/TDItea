@@ -7,4 +7,6 @@ namespace CustomEvents
     public class ScoreExp { public int ScorePointExp; }
 
     public class ScorePointChanged { public int ScorePoint; }
+
+    public class LevelNumber { public int Level; }
 }

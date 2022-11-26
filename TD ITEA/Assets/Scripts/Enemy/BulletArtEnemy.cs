@@ -9,7 +9,7 @@ public class BulletArtEnemy : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 7f);
+        Destroy(gameObject, 5f);
     }
 
     public void SetDamage(int damage)

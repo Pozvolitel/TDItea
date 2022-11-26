@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1750723819890599715}
   - component: {fileID: -8140006112185970679}
   m_Layer: 0
-  m_Name: CubeBlockPost
+  m_Name: CubeBarak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,4 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97536e469ad62da40aaeaebb1f1feb22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tower: {fileID: 5151233128579489972, guid: 220b8f90c5a41194497c787e9c2e5d20, type: 3}
+  _tower: {fileID: 2745597162083978290, guid: 3d4068e6b6230ac4e8bc311f840a9b90, type: 3}
+  _cointTower: 2000

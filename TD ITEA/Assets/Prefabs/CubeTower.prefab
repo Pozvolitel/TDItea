@@ -111,3 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tower: {fileID: 9140382392498718677, guid: edc192f46242a1d4da07f67173ba6551, type: 3}
+  _cointTower: 1000

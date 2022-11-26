@@ -82,6 +82,7 @@ public class EnemyTank : MonoBehaviour
         if (_count < _targetPoint.Length)
         {
             _navMeshAgent.SetDestination(_targetPoint[_count].position);
+            Vector3 targetRotation = _targetPoint[_count].position - transform.position;
         }
         else
         {

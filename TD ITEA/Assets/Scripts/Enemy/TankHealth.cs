@@ -26,8 +26,7 @@ public class TankHealth : MonoBehaviour, ITakeScissorsEnemy
      
         if(_health <= 0)
         {
-            IsDestroy(_experience);
-            _scoreExperienceManager.AddScore(_experience, _thisKill);
+            IsDestroy(_experience);           
             Destroy(gameObject);
         }
     }
@@ -37,6 +36,7 @@ public class TankHealth : MonoBehaviour, ITakeScissorsEnemy
         _score += isKill;
         if (_score == _experience)
         {
+            _scoreExperienceManager.AddScore(_experience, _thisKill);
             FindObjectOfType<GameManager>().AddRandomScore(_experience);
         }        
     }

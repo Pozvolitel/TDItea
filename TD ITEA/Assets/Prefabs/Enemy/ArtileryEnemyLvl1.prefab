@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4141679903897077455}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: EnemyTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 2922570484377983906}
   m_Layer: 0
   m_Name: ArtileryEnemyLvl1
-  m_TagString: EnemyTank
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

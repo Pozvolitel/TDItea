@@ -18,21 +18,14 @@ public class ArtyleryTank : MonoBehaviour
     private float _bulletVelocity;
     private float _garavity = Physics.gravity.y;
     [SerializeField] private float _power;
-    private GameManager _gameManager;
     [SerializeField] private Item _item;
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _gameManager = FindObjectOfType<GameManager>();
-        _gameManager.AddEnemyObj(this.gameObject);
+        FindObjectOfType<GameManager>().AddEnemyObj(this.gameObject);
         _damage = _item.Damage;
         _timeSpawn = _item.TimeSpawn;
-    }
-
-    private void OnDestroy()
-    {
-        _gameManager.RemoveEnemyObj(this.gameObject);
     }
 
     private void Update()
@@ -54,6 +47,12 @@ public class ArtyleryTank : MonoBehaviour
             _navMeshAgent.isStopped = false;
             MoveToTarget();
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (FindObjectOfType<GameManager>() != null)
+            FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
     }
 
     private void Shot()
@@ -102,6 +101,7 @@ public class ArtyleryTank : MonoBehaviour
         if (_count < _targetPoint.Length)
         {
             _navMeshAgent.SetDestination(_targetPoint[_count].position);
+            Vector3 targetRotation = _targetPoint[_count].position - transform.position;
         }
         else
         {

@@ -32,7 +32,6 @@ public class TigerHelth : MonoBehaviour, ITakeStoneEnemy
         if (_health <= 0)
         {
             IsDestroy(_experience);
-            _scoreExperienceManager.AddScore(_experience, _thisKill);
             Destroy(gameObject, 0.1f);
         }
     }
@@ -42,6 +41,8 @@ public class TigerHelth : MonoBehaviour, ITakeStoneEnemy
         _score += isKill;
         if (_score == _experience)
         {
+
+            _scoreExperienceManager.AddScore(_experience, _thisKill);
             _gameManager.AddRandomScore(_experience);
 
             for (int i = 0; i < _lengthGunner; i++)

@@ -39,6 +39,5 @@ public class BulletGanner : MonoBehaviour
             other.transform.GetComponent<ITakeStoneUnit>().TakeDamage(_damage, ThisEnemy);
             Destroy(gameObject);
         }
-        Destroy(gameObject);
     }    
 }

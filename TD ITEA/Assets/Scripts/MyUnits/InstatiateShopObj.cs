@@ -5,6 +5,7 @@ public class InstatiateShopObj : MonoBehaviour
     private DragShopObject _dragShopObject;
     [SerializeField] private GameObject _tower;
     private bool _isbuild = false;
+    [SerializeField] private int _cointTower;
 
     private void Start()
     {
@@ -18,10 +19,11 @@ public class InstatiateShopObj : MonoBehaviour
     }
 
     public void IsBilding()
-    {
+    {        
         if (_isbuild)
         {
             Instantiate(_tower, transform.position, Quaternion.identity);
+            FindObjectOfType<GameManager>().AddRandomScore(-_cointTower);
         }
             Destroy(gameObject);
     }

@@ -33,12 +33,14 @@ public class GannerVSU : MonoBehaviour
     void Update()
     {
         _enemy = GameObject.FindGameObjectsWithTag("EnemyTank");
-        _targetPoint = GameObject.FindGameObjectsWithTag("TargetFree");
+        _targetPoint = GameObject.FindGameObjectsWithTag("TargetFree");         
 
         if(FindClosestTarget() && !_isTarget)
         {
-            if(Vector3.Distance(transform.position, FindClosestTarget().position) > 1f)
-            _navMeshAgent.SetDestination(_closestTarget.position);
+            if (Vector3.Distance(transform.position, FindClosestTarget().position) > 5f)
+            {
+                _navMeshAgent.SetDestination(_closestTarget.position);
+            }            
         }
         else
         {
@@ -47,8 +49,6 @@ public class GannerVSU : MonoBehaviour
 
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 25f)
         {
-            //Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
-            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
             transform.LookAt(_closest);
             _timeShoot -= Time.deltaTime;
             if (!isShoot && _timeShoot > 0)
@@ -71,7 +71,7 @@ public class GannerVSU : MonoBehaviour
     {
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
-        if (_enemy != null)
+        if (_targetPoint != null)
         {
             foreach (GameObject go in _targetPoint)
             {
@@ -125,17 +125,5 @@ public class GannerVSU : MonoBehaviour
         var _reloadTime = 2f;
         yield return new WaitForSeconds(_reloadTime);
         _timeShoot = 3f;
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.CompareTag("TargetFull"))
-        {
-            _isTarget = true;
-        }
-        else
-        {
-            _isTarget = false;
-        }
     }
 }

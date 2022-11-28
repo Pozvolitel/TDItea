@@ -26,7 +26,7 @@ public class ArtileryHelth : MonoBehaviour, ITakePaperEnemy
         if (_health <= 0)
         {
             IsDestroy(_experience);            
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
         }
     }
 
@@ -37,6 +37,7 @@ public class ArtileryHelth : MonoBehaviour, ITakePaperEnemy
         {
             _scoreExperienceManager.AddScore(_experience, _thisKill);
             FindObjectOfType<GameManager>().AddRandomScore(_experience);
+            FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
         }
     }
 }

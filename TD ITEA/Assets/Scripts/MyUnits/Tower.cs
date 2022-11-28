@@ -11,21 +11,23 @@ public class Tower : MonoBehaviour
     private bool isShoot = false;
     private Transform _closest;
     [SerializeField] private int _damage;
-    [SerializeField] private GameObject _triggerLayer;
     [SerializeField] private Item _item;
+    private Animator _anim;
+    private GameObject _triggerZone;
 
     private void Start()
     {
+        _anim = GetComponent<Animator>();
         _damage = _item.Damage;
-        _timeSpawn = _item.TimeSpawn;
+        _timeSpawn = _item.TimeSpawn;        
     }
 
     private void OnDestroy()
     {
         gameObject.tag = "Player";
-        if (_triggerLayer != null)
+        if(_triggerZone != null)
         {
-            _triggerLayer.GetComponent<PlaneTriger>().NewLayer(false);
+            _triggerZone.GetComponent<PlaneTriger>().RemoveObj(this.gameObject);
         }
     }    
 
@@ -33,10 +35,9 @@ public class Tower : MonoBehaviour
     {
         _enemy = GameObject.FindGameObjectsWithTag("EnemyTank");
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 20f)
-        {
+        {            
             Vector3 targetRotation = FindClosestEnemy().transform.position - _pivot.transform.position;
-           _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
-            
+            _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
             if (!isShoot)
             {
                 gameObject.tag = "PlayerActive";
@@ -74,16 +75,17 @@ public class Tower : MonoBehaviour
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletTower>().SetDamage(_damage);
             Bullet.GetComponent<BulletTower>().ThisTower = this.gameObject;
+            _anim.SetTrigger("Attack");
         }
         isShoot = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6)
+        if(other.gameObject.layer == 6)
         {
-            _triggerLayer = other.transform.gameObject;
-            _triggerLayer.GetComponent<PlaneTriger>().NewLayer(true);
+            _triggerZone = other.gameObject;
+            _triggerZone.GetComponent<PlaneTriger>().AddObj(this.gameObject);
         }
     }
 }

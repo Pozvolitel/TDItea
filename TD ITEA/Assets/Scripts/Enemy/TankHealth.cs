@@ -38,6 +38,7 @@ public class TankHealth : MonoBehaviour, ITakeScissorsEnemy
         {
             _scoreExperienceManager.AddScore(_experience, _thisKill);
             FindObjectOfType<GameManager>().AddRandomScore(_experience);
+            FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
         }        
     }
 }

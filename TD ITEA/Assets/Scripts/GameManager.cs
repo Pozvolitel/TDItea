@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private LevelManager _scoreLevel = new LevelManager();
     private SpawnEnemy _spawnEnemy;
     private int _score = 1;
-    private List<GameObject> _enemyObj = new List<GameObject>();
+    [SerializeField] private List<GameObject> _enemyObj = new List<GameObject>();
     private bool _newLevel = true;
     private float _newTime = 20f;
     private float _timeSpawn = 20f;
@@ -19,11 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _min;
     [SerializeField] private TextMeshProUGUI _timer;
     [SerializeField] private TextMeshProUGUI _tochki;
+    [SerializeField] private CaseButton[] _caseButtons;
     public bool Build { get; private set; }
 
     private void Start()
     {
-        _scoreManager.SetScore(5000);
+        _scoreManager.SetScore(6000);
         _scoreLevel.SetScore(_score);
         _spawnEnemy = FindObjectOfType<SpawnEnemy>();
     }
@@ -75,28 +76,36 @@ public class GameManager : MonoBehaviour
         if (_newLevel)
         {
             Build = true;
+            for (int i = 0; i < _caseButtons.Length; i++)
+            {
+                _caseButtons[i].ColorButton(1);
+            }
             _timeSpawn -= Time.deltaTime;
             _timer.gameObject.SetActive(true);
             _timer.text = Mathf.Round(_timeSpawn).ToString();
             if (_timeSpawn <= 0)
             {
                 Build = false;
+                for (int i = 0; i < _caseButtons.Length; i++)
+                {
+                    _caseButtons[i].ColorButton(0.5f);
+                }
                 _timer.gameObject.SetActive(false);
                 if(_score == 1)
                 {
-                    _spawnEnemy.InstationPrefab(new int[] { 0, 0, 0, 0, 0, 0, 0 });
+                    _spawnEnemy.InstationPrefab(new int[] { 0, 2, 0, });
                     _newLevel = false;
                     _timeSpawn = _newTime;
                 }
                 else if (_score == 2)
                 {
-                    _spawnEnemy.InstationPrefab(new int[] { 0, 0, 0, 1, 1, 0, 0, 0, 1, 1 });
+                    _spawnEnemy.InstationPrefab(new int[] { 1, 1, 1 });
                     _newLevel = false;
                     _timeSpawn = _newTime;
                 }
                 else if (_score == 3)
                 {
-                    _spawnEnemy.InstationPrefab(new int[] { 0, 0, 1, 2, 2, 0, 1, 2, 2 });
+                    _spawnEnemy.InstationPrefab(new int[] { 0, 0, 1, 2, 2 });
                     _newLevel = false;
                     _timeSpawn = _newTime;
                 }

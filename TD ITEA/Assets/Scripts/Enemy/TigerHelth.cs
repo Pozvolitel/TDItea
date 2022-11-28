@@ -44,6 +44,7 @@ public class TigerHelth : MonoBehaviour, ITakeStoneEnemy
 
             _scoreExperienceManager.AddScore(_experience, _thisKill);
             _gameManager.AddRandomScore(_experience);
+            FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
 
             for (int i = 0; i < _lengthGunner; i++)
             {

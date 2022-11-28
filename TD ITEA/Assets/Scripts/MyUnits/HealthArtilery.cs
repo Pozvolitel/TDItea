@@ -8,6 +8,7 @@ public class HealthArtilery : MonoBehaviour, ITakePaperUnit
     private int _experience;
     [SerializeField] private SlidersCanvas _slidersCanvas;
     [SerializeField] private Item _item;
+    private int _score;
 
     private void Start()
     {
@@ -22,8 +23,17 @@ public class HealthArtilery : MonoBehaviour, ITakePaperUnit
         _thisKill = thisKill;
         if (_health <= 0)
         {
-            _experienceManager.AddScore(_experience, _thisKill);
+            IsDestroy(_experience);
             Destroy(gameObject);
+        }
+    }
+
+    private void IsDestroy(int isKill)
+    {
+        _score += isKill;
+        if (_score == _experience)
+        {
+            _experienceManager.AddScore(_experience, _thisKill);
         }
     }
 }

@@ -18,6 +18,7 @@ public class EnemyGanner : MonoBehaviour
     private int _damage;
     private GameManager _gameManager;
     [SerializeField] private Transform _pivot;
+    [SerializeField] private Animator _anim;
 
     private void Start()
     {
@@ -28,20 +29,22 @@ public class EnemyGanner : MonoBehaviour
         _timeSpawn = _item.TimeSpawn;
     }
 
-    private void OnDestroy()
-    {
-        if (FindObjectOfType<GameManager>() != null)
-            FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
-    }
+    //private void OnDestroy()
+    //{
+    //    if (FindObjectOfType<GameManager>() != null)
+    //        FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
+    //}
 
     private void Update()
     {
         _tower = GameObject.FindGameObjectsWithTag("PlayerActive");
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 15f)
         {
+            _anim.SetBool("Walk", false);
             _navMeshAgent.isStopped = true;
             Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
-            _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
+            _pivot.transform.LookAt(_closest);
             _timeShoot -= Time.deltaTime;
             if (!isShoot && _timeShoot > 0)
             {
@@ -56,6 +59,7 @@ public class EnemyGanner : MonoBehaviour
         {
             _navMeshAgent.isStopped = false;
             MoveToTarget();
+            _anim.SetBool("Walk", true);
         }
     }
 
@@ -107,6 +111,7 @@ public class EnemyGanner : MonoBehaviour
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletGanner>().SetDamage(_damage);
             Bullet.GetComponent<BulletGanner>().ThisEnemy = this.gameObject;
+            _anim.SetTrigger("Attack");
         }
         isShoot = false;
     }

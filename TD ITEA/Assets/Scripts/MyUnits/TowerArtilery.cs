@@ -15,9 +15,12 @@ public class TowerArtilery : MonoBehaviour
     private float _garavity = Physics.gravity.y;
     private float _bulletVelocity;
     [SerializeField] private Item _item;
+    private Animator _anim;
+    private GameObject _triggerZone;
 
     private void Start()
     {
+        _anim = GetComponent<Animator>();
         _damage = _item.Damage;
         _timeSpawn = _item.TimeSpawn;
     }
@@ -25,6 +28,10 @@ public class TowerArtilery : MonoBehaviour
     private void OnDestroy()
     {
         gameObject.tag = "Player";
+        if (_triggerZone != null)
+        {
+            _triggerZone.GetComponent<PlaneTriger>().RemoveObj(this.gameObject);
+        }
     }
 
     void Update()
@@ -50,7 +57,7 @@ public class TowerArtilery : MonoBehaviour
 
     private void Shot()
     {
-        Vector3 fromTo = FindClosestEnemy().position - _pivot.transform.position;
+        Vector3 fromTo = FindClosestEnemy().position - transform.position;
         Vector3 fromToXZ = new Vector3(fromTo.x, 0f, fromTo.z);
 
         transform.rotation = Quaternion.LookRotation(fromToXZ, Vector3.up);
@@ -91,7 +98,17 @@ public class TowerArtilery : MonoBehaviour
             Bullet.velocity = _shootPoint.forward * _bulletVelocity;
             Bullet.GetComponent<BulletArtilert>().SetDamage(_damage);
             Bullet.GetComponent<BulletArtilert>().ThisTower = this.gameObject;
+            _anim.SetTrigger("Attack");
         }
         isShoot = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            _triggerZone = other.gameObject;
+            _triggerZone.GetComponent<PlaneTriger>().AddObj(this.gameObject);
+        }
     }
 }

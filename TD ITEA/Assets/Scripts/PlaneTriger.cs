@@ -2,14 +2,20 @@ using UnityEngine;
 
 public class PlaneTriger : MonoBehaviour
 {
-    public void NewLayer(bool layer)
+    [SerializeField] private GameObject _obj;
+
+
+    public void AddObj(GameObject obj)
     {
-        if(layer)
+        _obj = obj;
+        gameObject.layer = 3;
+    }
+
+    public void RemoveObj(GameObject obj)
+    {
+        if (obj)
         {
-            gameObject.layer = 3;
-        }
-        else
-        {
+            _obj = null;
             gameObject.layer = 6;
         }
     }

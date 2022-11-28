@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletArtilert : MonoBehaviour
 {
-    private float _radius = 6f;
+    private float _radius = 8f;
     public GameObject ThisTower;
     private int _damage;
     public int Damage => _damage;

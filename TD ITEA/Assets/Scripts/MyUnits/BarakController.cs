@@ -12,7 +12,8 @@ public class BarakController : MonoBehaviour
     private float _timeSpawn = 20f;
     private float _timer = 5f;
     private float _radius = 5f;
-    
+    private GameObject _triggerZone;
+
     private void Update()
     {
         if (!_isSpawn && _soliderObj.Count < _maxSpawn)
@@ -25,6 +26,14 @@ public class BarakController : MonoBehaviour
         {
             RadiusSerch();
             _timer = 5f;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_triggerZone != null)
+        {
+            _triggerZone.GetComponent<PlaneTriger>().RemoveObj(this.gameObject);
         }
     }
 
@@ -52,5 +61,14 @@ public class BarakController : MonoBehaviour
         GameObject ad = Instantiate(_soldierprefab, _spawnSoldier.position, Quaternion.identity);
         RadiusSerch();
         _isSpawn = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            _triggerZone = other.gameObject;
+            _triggerZone.GetComponent<PlaneTriger>().AddObj(this.gameObject);
+        }
     }
 }

@@ -30,6 +30,7 @@ public class Experians : MonoBehaviour
             if (_experience >= _maxExp && _item.Level != 3 && _destroy)
             {
                 Instantiate(_prefabNextLvl, transform.position, transform.rotation);
+                FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
                 _destroy = false;
                 Destroy(gameObject);
             }

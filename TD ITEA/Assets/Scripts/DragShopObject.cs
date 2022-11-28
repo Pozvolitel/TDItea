@@ -56,7 +56,7 @@ public class DragShopObject : MonoBehaviour
     {
         if(hit.transform != null)
         {
-            _prefabPosition.transform.position = new Vector3(hit.transform.position.x, 0.5f, hit.transform.position.z);            
+            _prefabPosition.transform.position = new Vector3(hit.transform.position.x, 1.1f, hit.transform.position.z);            
         }
     }
 }

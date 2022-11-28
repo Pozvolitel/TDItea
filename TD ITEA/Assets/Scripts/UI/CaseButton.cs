@@ -28,7 +28,7 @@ public class CaseButton : MonoBehaviour
         _cointScore = eventData.ScorePoint;
     }
 
-        public void OnClikButton()
+    public void OnClikButton()
     {
         if (_cointScore >= _cointTower && FindObjectOfType<GameManager>().Build == true)
         {
@@ -36,5 +36,10 @@ public class CaseButton : MonoBehaviour
             Instantiate(_prefabButton);
             _shop.SetActive(false);            
         }        
+    }
+
+    public void ColorButton(float color)
+    {
+        GetComponent<Image>().color = new Color(1, 1, 1, color);
     }
 }

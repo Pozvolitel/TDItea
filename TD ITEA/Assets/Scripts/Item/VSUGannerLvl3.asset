@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0736a446586687439672b2a653d1641, type: 3}
   m_Name: VSUGannerLvl3
   m_EditorClassIdentifier: 
-  Damage: 20
+  Damage: 30
   Health: 2500
   TimeSpawn: 0.02
   Level: 3
-  MaxExpLvl: 1
+  MaxExp: 0
   ExperienceBonus: 1200

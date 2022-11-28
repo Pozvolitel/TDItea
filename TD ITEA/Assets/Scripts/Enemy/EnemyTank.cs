@@ -17,6 +17,7 @@ public class EnemyTank : MonoBehaviour
     [SerializeField] private int _damage;
     private GameManager _gameManager;
     [SerializeField] private Item _item;
+    [SerializeField] private Animator[] _anim;
 
     private void Start()
     {
@@ -25,18 +26,17 @@ public class EnemyTank : MonoBehaviour
         _gameManager.AddEnemyObj(this.gameObject);
         _damage = _item.Damage;
         _timeSpawn = _item.TimeSpawn;
-    }
-
-    private void OnDestroy()
-    {
-        _gameManager.RemoveEnemyObj(this.gameObject);
-    }
+    }    
 
     private void Update()
     {
         _tower = GameObject.FindGameObjectsWithTag("PlayerActive");
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 20f)
         {
+            for (int i = 0; i < 2; i++)
+            {
+                _anim[i].enabled = false;
+            }
             _navMeshAgent.isStopped = true;
             Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
             _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
@@ -49,6 +49,10 @@ public class EnemyTank : MonoBehaviour
         {
             _navMeshAgent.isStopped = false;
             MoveToTarget();
+            for (int i = 0; i < 2; i++)
+            {
+                _anim[i].enabled = true;
+            }
         }
     }
 
@@ -83,6 +87,7 @@ public class EnemyTank : MonoBehaviour
         {
             _navMeshAgent.SetDestination(_targetPoint[_count].position);
             Vector3 targetRotation = _targetPoint[_count].position - transform.position;
+            _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
         }
         else
         {
@@ -99,6 +104,7 @@ public class EnemyTank : MonoBehaviour
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletTank>().SetDamage(_damage);
             Bullet.GetComponent<BulletTank>().ThisEnemy = this.gameObject;
+            _anim[2].SetTrigger("Attacking");
         }
         isShoot = false;
     }

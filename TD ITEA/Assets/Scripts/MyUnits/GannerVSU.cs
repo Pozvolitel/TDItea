@@ -17,12 +17,16 @@ public class GannerVSU : MonoBehaviour
     [SerializeField] private Item _item;
     private Transform _closestTarget;
     private bool _isTarget = false;
+    [SerializeField] private GameObject _tag;
+    [SerializeField] private GameObject _pivot;
+    private Animator _anim;
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _damage = _item.Damage;
         _timeSpawn = _item.TimeSpawn;
+        _anim = GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -33,27 +37,35 @@ public class GannerVSU : MonoBehaviour
     void Update()
     {
         _enemy = GameObject.FindGameObjectsWithTag("EnemyTank");
-        _targetPoint = GameObject.FindGameObjectsWithTag("TargetFree");         
+        _targetPoint = GameObject.FindGameObjectsWithTag("TargetFree");
 
-        if(FindClosestTarget() && !_isTarget)
+        if (FindClosestTarget() && !_isTarget)
         {
-            if (Vector3.Distance(transform.position, FindClosestTarget().position) > 5f)
+            if (Vector3.Distance(transform.position, FindClosestTarget().position) > 2f)
             {
                 _navMeshAgent.SetDestination(_closestTarget.position);
-            }            
+                _anim.SetBool("Walk", true);
+            }
+            else
+            {
+                _anim.SetBool("Walk", false);
+            }
         }
         else
         {
+            _anim.SetBool("Walk", false);
             _navMeshAgent.isStopped = true;
         }
 
         if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 25f)
         {
-            transform.LookAt(_closest);
+            Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
+            _pivot.transform.LookAt(_closest);
             _timeShoot -= Time.deltaTime;
             if (!isShoot && _timeShoot > 0)
             {
-                gameObject.tag = "PlayerActive";
+                _tag.gameObject.tag = "PlayerActive";
                 StartCoroutine(SpawnBullet());
             }
             else if (_timeShoot <= 0)
@@ -63,7 +75,7 @@ public class GannerVSU : MonoBehaviour
         }
         else
         {
-            gameObject.tag = "Player";
+            _tag.gameObject.tag = "Player";
         }
     }
 
@@ -116,6 +128,7 @@ public class GannerVSU : MonoBehaviour
             GameObject Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
             Bullet.GetComponent<BulletVSU>().SetDamage(_damage);
             Bullet.GetComponent<BulletVSU>().ThisTower = this.gameObject;
+            _anim.SetTrigger("Attack");
         }
         isShoot = false;
     }

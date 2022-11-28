@@ -268,5 +268,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0dfd60a8d9dbbf49822fb1536ef61dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisTower: {fileID: 0}
   ThisEnemy: {fileID: 0}

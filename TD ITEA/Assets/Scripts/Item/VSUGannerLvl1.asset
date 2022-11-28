@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0736a446586687439672b2a653d1641, type: 3}
   m_Name: VSUGannerLvl1
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 10
   Health: 600
   TimeSpawn: 0.1
   Level: 1

@@ -19,6 +19,7 @@ public class ArtyleryTank : MonoBehaviour
     private float _garavity = Physics.gravity.y;
     [SerializeField] private float _power;
     [SerializeField] private Item _item;
+    [SerializeField] private Animator[] _anim;
 
     private void Start()
     {
@@ -31,10 +32,14 @@ public class ArtyleryTank : MonoBehaviour
     private void Update()
     {
         _tower = GameObject.FindGameObjectsWithTag("PlayerActive");
-        if (FindClosestEnemy() != null && Vector3.Distance(transform.position, FindClosestEnemy().position) < 50f && Vector3.Distance(transform.position, FindClosestEnemy().position) > 10f)
+        if (_closest != null && Vector3.Distance(transform.position, _closest.position) < 50f && Vector3.Distance(transform.position, _closest.position) > 10f)
         {
+            for (int i = 0; i < 2; i++)
+            {
+                _anim[i].enabled = false;
+            }            
             _navMeshAgent.isStopped = true;
-            Vector3 targetRotation = FindClosestEnemy().transform.position - transform.position;
+            Vector3 targetRotation = _closest.transform.position - transform.position;
             _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
             if (!isShoot)
             {
@@ -46,18 +51,17 @@ public class ArtyleryTank : MonoBehaviour
         {
             _navMeshAgent.isStopped = false;
             MoveToTarget();
+            for (int i = 0; i < 2; i++)
+            {
+                _anim[i].enabled = true;
+            }
         }
-    }
-
-    private void OnDestroy()
-    {
-        if (FindObjectOfType<GameManager>() != null)
-            FindObjectOfType<GameManager>().RemoveEnemyObj(this.gameObject);
-    }
+        FindClosestEnemy();
+    }    
 
     private void Shot()
     {
-        Vector3 fromTo = FindClosestEnemy().position - _pivot.transform.position;
+        Vector3 fromTo = _closest.position - _pivot.transform.position;
         Vector3 fromToXZ = new Vector3(fromTo.x, 0f, fromTo.z);
 
         transform.rotation = Quaternion.LookRotation(fromToXZ, Vector3.up);
@@ -102,6 +106,7 @@ public class ArtyleryTank : MonoBehaviour
         {
             _navMeshAgent.SetDestination(_targetPoint[_count].position);
             Vector3 targetRotation = _targetPoint[_count].position - transform.position;
+            _pivot.transform.rotation = Quaternion.Lerp(_pivot.transform.rotation, Quaternion.LookRotation(targetRotation), 7f * Time.deltaTime);
         }
         else
         {
@@ -113,12 +118,13 @@ public class ArtyleryTank : MonoBehaviour
     {
         isShoot = true;
         yield return new WaitForSeconds(_timeSpawn);
-        if (FindClosestEnemy() != null)
+        if (_closest != null)
         {
             Rigidbody Bullet = Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation).GetComponent<Rigidbody>();
             Bullet.velocity = _shootPoint.forward * _bulletVelocity;
             Bullet.GetComponent<BulletArtEnemy>().SetDamage(_damage);
             Bullet.GetComponent<BulletArtEnemy>().ThisEnemy = this.gameObject;
+            _anim[2].SetTrigger("Attacking");
         }
         isShoot = false;
     }
